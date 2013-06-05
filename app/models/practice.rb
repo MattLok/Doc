@@ -6,7 +6,14 @@ class Practice < ActiveRecord::Base
   has_many :patients, :through => :practice_membership
   has_many :appointments, :through => :doctors
 
-  
+  validates_presence_of :office_name
+  validates_presence_of :contact_name
+  validates_presence_of :email
+  validates_presence_of :phone
+
+  validates_format_of :email, with: /@/
+
+
 
 
 end
