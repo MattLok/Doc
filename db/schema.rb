@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605204852) do
+ActiveRecord::Schema.define(:version => 20130605225634) do
 
   create_table "appointments", :force => true do |t|
     t.datetime "date"
@@ -72,9 +72,9 @@ ActiveRecord::Schema.define(:version => 20130605204852) do
   end
 
   create_table "statuses", :force => true do |t|
-    t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "status_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end

@@ -1,6 +1,8 @@
 class Status < ActiveRecord::Base
-  attr_accessible :type
+  attr_accessible :status_type
 
-  belongs_to :referral
-  belongs_to :connection
+  validates_presence_of :status_type
+
+  has_many :referrals
+  has_many :connections
 end

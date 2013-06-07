@@ -27,6 +27,14 @@ describe Practice do
   describe "practice relations" do
     
 
+    it "has doctors in the practice" do 
+      #FactoryGirl.create(:practice)
+      prac = FactoryGirl.create(:practice_with_docs)
+      #puts prac
+      #puts prac.id
+      expect(prac.doctors.count).to eql(5)
+    end
+
 
 
   end

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :patient do
-    first_name "MyString"
-    last_name "MyString"
+    first_name "Leeeeeroooyyy"
+    last_name "Jenkinsssss"
   end
 end

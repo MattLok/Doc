@@ -1,7 +1,28 @@
 class Connection < ActiveRecord::Base
   attr_accessible :requestor_id, :status_id, :target_id
+  after_initialize :default_values
 
-  belongs_to :practice
-  has_one :status
+  validates_presence_of :requestor_id
+  validates_presence_of :target_id
+  validates_presence_of :status_id 
+
+
+  #belongs_to :practice
+  #has_one :status
+  #has_one :status #, :class_name => "status", :foreign_key => "status_id"
+  belongs_to :status
+
+  #A belongs to target(target_id) : A belongs to requestor
+  # Class name and foreign key options
+  # class in both cases is going to be the same 
+
+  belongs_to :practice, :class_name => "practice", :foreign_key => "requestor_id"
+  belongs_to :practice, :class_name => "practice", :foreign_key => "target_id"
+
+
+  before_save :default_values
+  def default_values
+    self.status_id ||= 1
+  end
 
 end

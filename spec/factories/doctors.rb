@@ -1,10 +1,13 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
+  sequence :multiple do |n|
+    "Erving#{n}"
+  end
 
   factory :doctor do
     first_name 'Julius'
-    last_name 'Erving'
+    last_name { generate(:multiple) } 
     email 'doctorJ@docs.com'
     practice
 
