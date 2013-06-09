@@ -2,7 +2,10 @@ Docfer::Application.routes.draw do
 
   resources :practices do 
     resources :doctors
+    resources :patients
   end
+
+
 
   resources :doctors, except: :index
   # The priority is based upon order of creation:
