@@ -1,6 +1,10 @@
 Docfer::Application.routes.draw do
 
-  resources :practices
+  resources :practices do 
+    resources :doctors
+  end
+
+  resources :doctors, except: :index
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
