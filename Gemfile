@@ -30,6 +30,10 @@ group :development, :test do
 
 end
 
+group :test do 
+  gem "nyan-cat-formatter"
+end
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
