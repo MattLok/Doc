@@ -3,7 +3,8 @@ class Practice < ActiveRecord::Base
 
   has_many :connections
   has_many :doctors
-  has_many :patients, :through => :practice_membership
+  has_many :practice_memberships
+  has_many :patients, :through => :practice_memberships
   has_many :appointments, :through => :doctors
 
   validates_presence_of :office_name

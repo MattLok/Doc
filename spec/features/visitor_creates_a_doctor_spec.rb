@@ -17,4 +17,9 @@ feature "creating a doctor" do
   end
 
 
+
+
+ # it "can select from a collection of practices"
+
+
 end
