@@ -3,17 +3,22 @@ Docfer::Application.routes.draw do
   resources :practices do 
     resources :doctors
     resources :patients
+    resources :connections, only:[:new, :create,:destroy]
   end
 
 
 
   resources :doctors, except: :index
 
-resources :practices do
-  resources :patients do
-    resources :practicememberships, only: [:new, :create]
+  resources :practices do
+    resources :patients do
+      resources :practicememberships, only: [:new, :create]
+    end
   end
-end
+
+  resources :practices do 
+    resources :appointments
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

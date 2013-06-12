@@ -6,6 +6,13 @@ class PracticeMembership < ActiveRecord::Base
 
 
   belongs_to :patient
-  belongs_to :practice 
+  belongs_to :practice
+
+
+  def get_first_name
+
+    self.patient.first_name
+
+  end 
 end
  

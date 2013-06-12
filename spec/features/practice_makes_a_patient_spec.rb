@@ -11,6 +11,7 @@ feature "creating a patient" do
          
     fill_in "First name", with:"Carl"
     fill_in "Last name", with:"Banks"
+    fill_in "Ssn", with:"1234"
     
 
     page.status_code.should be 200
@@ -27,6 +28,7 @@ feature "creating a patient" do
          
     fill_in "First name", with:"Carl"
     fill_in "Last name", with:"Banks"
+    fill_in "Ssn", with:"1234"
 
     click_on "Create Patient"
 

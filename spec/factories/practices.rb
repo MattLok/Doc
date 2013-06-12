@@ -12,6 +12,7 @@ FactoryGirl.define do
         doc_count 5
       end
 
+
       after(:create) do |practice,evaluator|
         FactoryGirl.create_list(:doctor, evaluator.doc_count, practice: practice)
       end
@@ -19,6 +20,17 @@ FactoryGirl.define do
 
 
     end
+
+    factory :practice_with_doc do
+      ignore do
+        doc_count 1
+      end
+
+      after(:create) do |practice,evaluator|
+        FactoryGirl.create_list(:doctor, evaluator.doc_count, practice: practice)
+      end
+    end
   end
+
 
 end
