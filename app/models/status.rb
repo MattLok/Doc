@@ -4,5 +4,5 @@ class Status < ActiveRecord::Base
   validates_presence_of :status_type
 
   has_many :referrals
-  has_many :connections
+  #has_many :connections
 end

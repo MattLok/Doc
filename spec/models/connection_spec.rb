@@ -18,7 +18,7 @@ describe Connection do
 
       connection = Connection.create(:requestor_id => a.id, :target_id => b.id)
       
-      expect(connection.status_id).to eql(1)
+      expect(connection.status_type).to eql('Pending')
 
       #puts connection.inspect
 
@@ -29,7 +29,7 @@ describe Connection do
 
   describe "Connection relations" do 
 
-    it {should belong_to(:status) }
+    #it {should belong_to(:status) }
 
     it {should belong_to(:practice)}
 

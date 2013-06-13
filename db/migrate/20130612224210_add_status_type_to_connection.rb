@@ -1,13 +1,13 @@
 class AddStatusTypeToConnection < ActiveRecord::Migration
   def up
-    add_column :connection, :status_type, :string
-    remove_column :connection, :status_id
+    add_column :connections, :status_type, :string
+    remove_column :connections, :status_id
 
 
   end
 
   def down
-    remove_column :connection, :status_type
-    add_column :connection, :status_id, :integer 
+    remove_column :connections, :status_type
+    add_column :connections, :status_id, :integer 
   end
 end

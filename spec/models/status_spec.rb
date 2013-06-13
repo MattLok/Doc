@@ -11,7 +11,7 @@ describe Status do
 
   describe "status relations" do
     it {should have_many :referrals}
-    it {should have_many :connections}
+    #it {should have_many :connections}
 
   end
 
