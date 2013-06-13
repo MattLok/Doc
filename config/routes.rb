@@ -1,7 +1,7 @@
 Docfer::Application.routes.draw do
 
   resources :practices do 
-    resources :doctors
+    resources :doctors 
     resources :patients
     resources :connections, only:[:new, :create,:destroy,:index, :update]
   end
@@ -9,6 +9,10 @@ Docfer::Application.routes.draw do
 
 
   resources :doctors, except: :index
+
+  resource :doctor do 
+    resources :referrals, only:[:new,:create, :index]
+  end
 
   resources :practices do
     resources :patients do

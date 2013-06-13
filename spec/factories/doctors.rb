@@ -19,4 +19,14 @@ FactoryGirl.define do
     
   end
 
+
+  factory :doctor2 do 
+
+    first_name 'Brian'
+    last_name 'Peppers'
+    email 'brian@peppers.com'
+    practice
+
+  end
+
 end

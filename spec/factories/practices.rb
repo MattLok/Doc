@@ -33,4 +33,23 @@ FactoryGirl.define do
   end
 
 
+  # factory :practice2 do
+  #   contact_name 'Jon'
+  #   email 'Jon@snowdoctor.com'
+  #   office_name 'Doc of the North'
+  #   phone '5082604444'
+
+  #   factory :practice2_with_doc do 
+  #     ignore do
+  #       doc_count 1
+  #     end
+
+  #     after(:create) do |practice,evaluator|
+  #       FactoryGirl.create_list(:doctor, evaluator.doc_count, practice2: practice)
+  #     end
+  #   end
+
+  # end
+
+
 end
