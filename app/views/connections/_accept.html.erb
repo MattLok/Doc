@@ -1,0 +1,9 @@
+
+<% @connections.each do |connection| %>
+  <%= form_for [@practice,connection] do |f| %>
+
+    <%= f.submit "Accept", :name => "accept_connection" %>
+    <%= f.submit "Decline", :name =>"decline_connection" %>
+
+  <% end %>
+<% end %>

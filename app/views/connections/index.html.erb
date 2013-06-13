@@ -1,0 +1,20 @@
+<h1>Pending Practice Connections</h1>
+
+<% if @connections.count == 0 %>
+  <p>No pending connections at this time</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Pending Requests</th>
+      <th></th>
+    </tr>
+  <% @connections.each do |connection| %>
+    <tr>
+      <td><%= connection.requestor_name %></td>
+      <td><%= render 'accept' %></td>
+
+    </tr>
+    <% end %>
+  </table>
+<% end %>
+  <br />

@@ -26,5 +26,29 @@ class ConnectionsController < ApplicationController
 
   end
 
+  def index
+
+    @practice = Practice.find(params[:practice_id])
+    @connections = Connection.where("target_id = ?", @practice.id).where(:status_type => "Pending")
+    #binding.pry
+  end
+
+  def update
+    #binding.pry
+    @practice = Practice.find(params[:practice_id])
+    @connection = Connection.find(params[:id])
+
+    if (params[:accept_connection])
+      @connection.status_type = "Accepted"
+      flash[:notice] = "You are now connected"
+    elsif (params[:decline_connection])
+      @connection.status_type = "Declined"
+      flash[:notice] = "You rejected them..."
+    end
+
+    @connection.save
+
+    redirect_to @practice
+  end
 
 end

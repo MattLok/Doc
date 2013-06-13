@@ -19,11 +19,16 @@ class Connection < ActiveRecord::Base
   belongs_to :practice, :class_name => "practice", :foreign_key => "requestor_id"
   belongs_to :practice, :class_name => "practice", :foreign_key => "target_id"
 
-  $STATUSES = ['Pending','Accepted','Rejected']
+  $STATUSES = ['Pending','Accepted','Declined']
 
   before_save :default_values
   def default_values
     self.status_type ||= $STATUSES[0]
+  end
+
+  def requestor_name
+    @requestor = Practice.find(self.requestor_id)
+    @requestor.office_name
   end
 
 end
