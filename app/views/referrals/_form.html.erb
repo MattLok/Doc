@@ -1,0 +1,13 @@
+<%= form_for [@doctor, @referral] do |f| %>
+  <p>Connected Doctors</p>
+  <%= f.collection_select :to_doctor, @potential, :id, :first_name, include_blank:true %></br>
+  <p>Patients</p>
+  <%= f.collection_select :patient_id, @patients, :id, :first_name, include_blank: true %></br>
+  <p>Notes</p>
+  <%= f.label :notes %>
+  <%= f.text_area :notes %></br>
+
+
+  <%= f.submit "Send Referral" %>
+
+<% end %>

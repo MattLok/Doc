@@ -2,10 +2,10 @@ class ConnectionsController < ApplicationController
 
   def new 
 
-    #binding.pry
     @practice = Practice.find(params[:practice_id])
     @all_pracs = Practice.all 
     @connection = Connection.new()
+    #binding.pry
 
 
   end

@@ -10,7 +10,7 @@ Docfer::Application.routes.draw do
 
   resources :doctors, except: :index
 
-  resource :doctor do 
+  resources :doctors do 
     resources :referrals, only:[:new,:create, :index]
   end
 
