@@ -10,7 +10,7 @@ describe Status do
   end
 
   describe "status relations" do
-    it {should have_many :referrals}
+    #it {should have_many :referrals}
     #it {should have_many :connections}
 
   end

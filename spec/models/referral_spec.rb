@@ -8,7 +8,7 @@ describe Referral do
 
     it {should validate_presence_of(:doctor_id)}
     it {should validate_presence_of(:patient_id)}
-    it {should validate_presence_of(:status_id)}
+    it {should validate_presence_of(:status_type)}
     it {should validate_presence_of(:to_doctor)}
 
 
@@ -20,7 +20,7 @@ describe Referral do
 
       ref = Referral.create(:doctor_id => doc.id,:patient_id => pat.id,:to_doctor => doc.id)
 
-      expect(ref.status_id).to eql(1)
+      expect(ref.status_type).to eql('Sent')
 
     end
 
