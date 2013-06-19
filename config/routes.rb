@@ -1,5 +1,9 @@
 Docfer::Application.routes.draw do
 
+  devise_for :doctors
+
+  root :to => 'home#home'
+
   resources :practices do 
     resources :doctors 
     resources :patients
