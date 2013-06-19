@@ -14,9 +14,7 @@ feature "Doctor can send referrals" do
     @doc = @prac1.doctors.first
     @doc2 = @prac2.doctors.first 
 
-    puts @doc.first_name
-    puts @doc.last_name
-
+    Connection.create!(:requestor_id => @prac1.id, :target_id => @prac2.id, :status_type => "Accepted")
     @doc2.first_name = 'Robin'
     @doc2.save
     
