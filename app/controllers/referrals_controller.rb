@@ -3,10 +3,10 @@ class ReferralsController < ApplicationController
 
   def new 
     
-    @doctor = Doctor.find(params[:doctor_id])
+    @doctor = User.find(params[:user_id])
     @referral = @doctor.referrals.build()
     #@practice = Practice.find(@doctor.practice_id)
-    @potential = Doctor.all
+    @potential = User.all
     @patients = Patient.all
     @connected_docs = @referral.connected_docs 
     #binding.pry
@@ -14,10 +14,10 @@ class ReferralsController < ApplicationController
   end
 
   def create
-    @doctor = Doctor.find(params[:doctor_id])
-    @to_doc = Doctor.find(params[:referral][:to_doctor])
+    @doctor = User.find(params[:user_id])
+    @to_doc = User.find(params[:referral][:to_user])
     @patient = Patient.find(params[:referral][:patient_id])
-    @referral = @doctor.referrals.build(:to_doctor => @to_doc.id,
+    @referral = @doctor.referrals.build(:to_user => @to_doc.id,
                                         :patient_id => @patient.id,
                                         :notes => params[:referral][:notes])
     #binding.pry

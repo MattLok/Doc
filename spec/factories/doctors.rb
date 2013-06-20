@@ -8,7 +8,7 @@ FactoryGirl.define do
     "doctorj#{n}@docs.com"
   end
 
-  factory :doctor do
+  factory :user do
     first_name 'Julius'
     last_name { generate(:multiple) } 
     email {generate(:multi_email) }     #'doctorJ@docs.com'
@@ -19,12 +19,12 @@ FactoryGirl.define do
       practice_id '1'
     end
 
-    factory :doctor_belongs, traits: [:belongs]
+    factory :user_belongs, traits: [:belongs]
     
   end
 
 
-  factory :doctor2 do 
+  factory :user2 do 
 
     first_name 'Brian'
     last_name 'Peppers'

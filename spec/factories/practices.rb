@@ -14,7 +14,7 @@ FactoryGirl.define do
 
 
       after(:create) do |practice,evaluator|
-        FactoryGirl.create_list(:doctor, evaluator.doc_count, practice: practice)
+        FactoryGirl.create_list(:user, evaluator.doc_count, practice: practice)
       end
 
 
@@ -27,7 +27,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |practice,evaluator|
-        FactoryGirl.create_list(:doctor, evaluator.doc_count, practice: practice)
+        FactoryGirl.create_list(:user, evaluator.doc_count, practice: practice)
       end
     end
   end

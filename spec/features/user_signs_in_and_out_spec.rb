@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe 'authentication' do 
-  let!(:doctor) {FactoryGirl.create(:doctor) }
+  let!(:user) {FactoryGirl.create(:user) }
 
   it "can sign into an account" do 
 
-    visit new_doctor_session_path
-    fill_in "Email", with:doctor.email
-    fill_in "Password", with:doctor.password
+    visit new_user_session_path
+    fill_in "Email", with:user.email
+    fill_in "Password", with:user.password
 
     click_button 'Sign in'
 
@@ -17,9 +17,9 @@ describe 'authentication' do
   end
 
   it "cant sign out of an account" do 
-    visit new_doctor_session_path 
-    fill_in "Email", with:doctor.email
-    fill_in "Password", with:doctor.password
+    visit new_user_session_path 
+    fill_in "Email", with:user.email
+    fill_in "Password", with:user.password
 
     click_button 'Sign in'
     click_on 'Sign out'

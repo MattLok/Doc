@@ -1,7 +1,7 @@
 <%= form_for [@doctor, @referral] do |f| %>
 
   <p>Connected Doctors</p>
-  <%= f.collection_select :to_doctor, @referral.connected_docs, :id, :first_name, include_blank:true %></br>
+  <%= f.collection_select :to_user, @referral.connected_docs, :id, :first_name, include_blank:true %></br>
   <p>Patients</p>
   <%= f.collection_select :patient_id, @patients, :id, :first_name, include_blank: true %></br>
   <p>Notes</p>

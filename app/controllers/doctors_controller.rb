@@ -1,13 +1,13 @@
 class DoctorsController < ApplicationController
 
 
-  def new 
-    @doctor = Doctor.new()
+  # def new 
+  #   @doctor = Doctor.new()
 
-  end
+  # end
 
   def show
-    @doctor = Doctor.find(params[:id])
+    @doctor = User.find(params[:id])
 
   end
 

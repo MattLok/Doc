@@ -32,7 +32,7 @@ describe Practice do
       prac = FactoryGirl.create(:practice_with_docs)
       #puts prac
       #puts prac.id
-      expect(prac.doctors.count).to eql(5)
+      expect(prac.users.count).to eql(5)
     end
 
 
