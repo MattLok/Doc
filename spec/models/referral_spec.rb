@@ -6,30 +6,30 @@ describe Referral do
 
   describe "creating a referral" do 
 
-    it {should validate_presence_of(:doctor_id)}
+    it {should validate_presence_of(:user_id)}
     it {should validate_presence_of(:patient_id)}
     it {should validate_presence_of(:status_type)}
-    it {should validate_presence_of(:to_doctor)}
+    it {should validate_presence_of(:to_user)}
 
 
     it "has a default status_id" do
 
-      doc = FactoryGirl.create(:doctor)
-      doc2 = FactoryGirl.create(:doctor)
+      doc = FactoryGirl.create(:user)
+      doc2 = FactoryGirl.create(:user)
       pat = FactoryGirl.create(:patient)
 
-      ref = Referral.create(:doctor_id => doc.id,:patient_id => pat.id,:to_doctor => doc.id)
+      ref = Referral.create(:user_id => doc.id,:patient_id => pat.id,:to_user => doc.id)
 
       expect(ref.status_type).to eql('Sent')
 
     end
 
     it "has a default note if none specified" do
-      doc = FactoryGirl.create(:doctor)
-      doc2 = FactoryGirl.create(:doctor)
+      doc = FactoryGirl.create(:user)
+      doc2 = FactoryGirl.create(:user)
       pat = FactoryGirl.create(:patient)
 
-      ref = Referral.create(:doctor_id => doc.id,:patient_id => pat.id,:to_doctor => doc.id)
+      ref = Referral.create(:user_id => doc.id,:patient_id => pat.id,:to_user => doc.id)
 
       expect(ref.notes).to eql("No notes specified")
 
