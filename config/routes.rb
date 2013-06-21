@@ -10,11 +10,11 @@ Docfer::Application.routes.draw do
     resources :connections, only:[:new, :create,:destroy,:index, :update]
   end
 
+  # resources :users, except: :index
 
+  # resources :users do 
 
-  resources :users, except: :index
-
-  resources :users do 
+  resources :users, path: "doctors", only: [:show], as: "doctors", controller:"doctors" do
     resources :referrals, only:[:new,:create, :index]
   end
 

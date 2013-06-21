@@ -20,7 +20,7 @@ feature "Doctor can send referrals" do
     
     #puts doc.id
 
-    visit(new_user_referral_path(@doc))
+    visit(new_doctor_referral_path(@doc))
     #save_and_open_page
 
     select('Pat', :from => "referral_patient_id")

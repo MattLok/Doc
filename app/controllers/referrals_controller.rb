@@ -1,9 +1,8 @@
 class ReferralsController < ApplicationController
 
 
-  def new 
-    
-    @doctor = User.find(params[:user_id])
+  def new     
+    @doctor = User.find(params[:doctor_id])
     @referral = @doctor.referrals.build()
     #@practice = Practice.find(@doctor.practice_id)
     @potential = User.all
@@ -14,7 +13,7 @@ class ReferralsController < ApplicationController
   end
 
   def create
-    @doctor = User.find(params[:user_id])
+    @doctor = User.find(params[:doctor_id])
     @to_doc = User.find(params[:referral][:to_user])
     @patient = Patient.find(params[:referral][:patient_id])
     @referral = @doctor.referrals.build(:to_user => @to_doc.id,
@@ -23,7 +22,7 @@ class ReferralsController < ApplicationController
     #binding.pry
 
     if @referral.save 
-      redirect_to @doctor, notice: "Referral Sent"
+      redirect_to doctor_path(@doctor), notice: "Referral Sent"
     else
       render(action:'new')
     end
