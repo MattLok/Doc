@@ -11,8 +11,8 @@ feature "Doctor can send referrals" do
     count = Referral.all.count
     @prac1.patients.build(:first_name => "Pat",:last_name => "Lamp", :ssn => 1900)
     @prac1.save
-    @doc = @prac1.doctors.first
-    @doc2 = @prac2.doctors.first 
+    @doc = @prac1.users.first
+    @doc2 = @prac2.users.first 
 
     Connection.create!(:requestor_id => @prac1.id, :target_id => @prac2.id, :status_type => "Accepted")
     @doc2.first_name = 'Robin'
@@ -24,7 +24,7 @@ feature "Doctor can send referrals" do
     #save_and_open_page
 
     select('Pat', :from => "referral_patient_id")
-    select('Robin', :from => "referral_to_doctor")
+    select('Robin', :from => "referral_to_user")
     fill_in 'Notes', with:'This guy is messed up'
 
     click_on "Send Referral"

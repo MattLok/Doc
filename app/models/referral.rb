@@ -1,13 +1,13 @@
 class Referral < ActiveRecord::Base
-  attr_accessible :doctor_id, :notes, :patient_id, :status_type, :to_doctor
+  attr_accessible :user_id, :notes, :patient_id, :status_type, :to_user
   after_initialize :default_values
 
-  validates_presence_of :doctor_id
+  validates_presence_of :user_id
   validates_presence_of :patient_id
   validates_presence_of :status_type
-  validates_presence_of :to_doctor
+  validates_presence_of :to_user
 
-  belongs_to :doctor 
+  belongs_to :user 
   belongs_to :patient 
 
   #has_one :status 
@@ -23,7 +23,7 @@ class Referral < ActiveRecord::Base
   #Find all of the doctors for connected practices, filtering out docs from current practice
   def connected_docs
 
-    @doctor = Doctor.find(self.doctor_id)
+    @doctor = User.find(self.user_id)
     @practice = Practice.find(@doctor.practice_id)
     @connections = Connection.find(:all, 
         :conditions =>["(requestor_id = ? OR target_id = ?) AND status_type = ?",
@@ -32,7 +32,7 @@ class Referral < ActiveRecord::Base
     @connected_docs = []
     
     @connections.each do |connection|
-      @connected_docs << Doctor.find(:all, 
+      @connected_docs << User.find(:all, 
         :conditions =>["(practice_id = ? OR practice_id = ?) AND practice_id != ?", 
         connection.target_id, 
         connection.requestor_id,

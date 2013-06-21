@@ -7,7 +7,7 @@ describe Appointment do
   describe "creating an appointment" do
 
     it {should validate_presence_of(:date) }
-    it {should validate_presence_of(:doctor_id)}
+    it {should validate_presence_of(:user_id)}
     it {should validate_presence_of(:prac_mem_id)}
 
 
@@ -16,7 +16,7 @@ describe Appointment do
   describe "appointment relations" do
 
     it {should belong_to(:practice_membership)}
-    it {should belong_to(:doctor)}
+    it {should belong_to(:user)}
 
   end
 end

@@ -13,7 +13,7 @@ feature "Practice Creates an appointment" do
     fill_in 'Date', with:'7/4/2013'
     #find_field('appointment_doctor_id').last
 
-    select('Julius', :from => "appointment_doctor_id")
+    select('Julius', :from => "appointment_user_id")
     select('Patient', :from => "appointment_prac_mem_id")
 
     click_on "Create Appointment"

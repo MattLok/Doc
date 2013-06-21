@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Doctor do
+describe User do
   #pending "add some examples to (or delete) #{__FILE__}"
 
 
@@ -8,15 +8,15 @@ describe Doctor do
 
     it "validates with and without a practice" do
 
-      Doctor.new(:email => "doc@doctor.com", :first_name => "M", :last_name =>"Test")
+      User.new(:email => "doc@doctor.com",:password =>"password", :first_name => "M", :last_name =>"Test")
 
-      FactoryGirl.create(:doctor)
-      expect(Doctor.count).to eql(1)
+      FactoryGirl.create(:user)
+      expect(User.count).to eql(1)
 
       FactoryGirl.create(:practice)
-      FactoryGirl.create(:doctor_belongs)
+      FactoryGirl.create(:user_belongs)
 
-      expect(Doctor.count).to eql(2)
+      expect(User.count).to eql(2)
       #Doctor.new(:email => "doc@doctor.com", :first_name => "M", :last_name =>"Test")
 
     end

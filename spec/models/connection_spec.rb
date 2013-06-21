@@ -13,8 +13,8 @@ describe Connection do
 
     it "has a default status_id" do 
 
-      a = FactoryGirl.create(:doctor)
-      b = FactoryGirl.create(:doctor)
+      a = FactoryGirl.create(:user)
+      b = FactoryGirl.create(:user)
 
       connection = Connection.create(:requestor_id => a.id, :target_id => b.id)
       

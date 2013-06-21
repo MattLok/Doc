@@ -1,16 +1,20 @@
 Docfer::Application.routes.draw do
 
+  devise_for :users
+
+  root :to => 'home#home'
+
   resources :practices do 
-    resources :doctors 
+    resources :users 
     resources :patients
     resources :connections, only:[:new, :create,:destroy,:index, :update]
   end
 
+  # resources :users, except: :index
 
+  # resources :users do 
 
-  resources :doctors, except: :index
-
-  resources :doctors do 
+  resources :users, path: "doctors", only: [:show], as: "doctors", controller:"doctors" do
     resources :referrals, only:[:new,:create, :index]
   end
 
