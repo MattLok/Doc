@@ -44,4 +44,13 @@ class Referral < ActiveRecord::Base
 
   end
 
+  def involves?(user)
+    #self.requestor_id == user.practice_id || self.target_id == user.practice_id
+    
+  end
+
+
+  #grab all referrals that belong to specific practice 
+  #first need to check if the doctor belongs to the practice 
+
 end

@@ -30,6 +30,9 @@ FactoryGirl.define do
         FactoryGirl.create_list(:user, evaluator.doc_count, practice: practice)
       end
     end
+
+
+
   end
 
 

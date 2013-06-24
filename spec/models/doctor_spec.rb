@@ -6,6 +6,10 @@ describe User do
 
   describe "creating a docotor" do
 
+    it {should validate_presence_of :role}
+    it {should ensure_inclusion_of(:role).in_array(%w{practice_admin doctor})}
+    it {should_not allow_mass_assignment_of(:role)}
+
     it "validates with and without a practice" do
 
       User.new(:email => "doc@doctor.com",:password =>"password", :first_name => "M", :last_name =>"Test")
@@ -21,24 +25,20 @@ describe User do
 
     end
 
+    it "has a default role" do 
+
+     doc = User.create!(:email => "doc@doctor.com",:password =>"password", :first_name => "M", :last_name =>"Test")
+      #count = User.count
+      expect(doc.role).to eql('doctor')
+    end
+
   end
 
   describe "doctor relationships" do 
 
-    # it "has a practice id when applicable" do
-
-    #   FactoryGirl.create(:doctor_belongs)
-    #   doc = Doctor.last
-    #   expect(doc.practice_id).to eql(1)
-
-
-    # end
     it { should belong_to(:practice) }
     it { should have_many(:appointments) }
     it { should have_many(:referrals) }
-
-
-
 
   end
 end

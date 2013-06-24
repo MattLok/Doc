@@ -5,7 +5,7 @@ describe Practice do
 
 
   describe "creating a practice" do 
-
+    it {should have_many(:referrals).through(:users)}
 
     it "doesn't create until all fields are present" do
       Practice.create(:office_name => "Cape Cod MD", :email => "m@ccmd.com")

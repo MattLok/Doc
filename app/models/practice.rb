@@ -6,6 +6,7 @@ class Practice < ActiveRecord::Base
   has_many :practice_memberships
   has_many :patients, :through => :practice_memberships
   has_many :appointments, :through => :users
+  has_many :referrals, :through => :users
 
   validates_presence_of :office_name
   validates_presence_of :contact_name
@@ -15,6 +16,11 @@ class Practice < ActiveRecord::Base
   validates_format_of :email, with: /@/
 
 
+  def involves?(user)
+    # users.any? do |user|
+    referrals.any? { |referral| referral.user == user }
+    # end
+  end
 
 
   def referrals_count(sent="to_user",timeframe = 365)
@@ -29,6 +35,18 @@ class Practice < ActiveRecord::Base
     @referrals.flatten
   end
 
+  def has_member?(patient)
+    if PracticeMembership.where("practice_id = ? AND patient_id = ?", self.id,patient.id).count > 0
+      true
+    else
+      false
+    end
+  end
 
+  def all_practice_docs
+
+    @docs = User.where("practice_id = ?", self.id)
+
+  end
 
 end

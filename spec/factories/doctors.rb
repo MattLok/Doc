@@ -14,6 +14,7 @@ FactoryGirl.define do
     email {generate(:multi_email) }     #'doctorJ@docs.com'
     practice
     password 'password'
+    role 'doctor'
 
     trait :belongs do
       practice_id '1'
@@ -31,6 +32,7 @@ FactoryGirl.define do
     email 'brian@peppers.com'
     practice
     password 'password'
+    role 'doctor'
 
   end
 
