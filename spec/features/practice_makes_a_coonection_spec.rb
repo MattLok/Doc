@@ -45,7 +45,6 @@ feature "Practice sends a connection request" do
       sign_in_as(admin2)    
 
       visit(practice_connections_path(@prac2))
-      save_and_open_page
       click_on "Accept"
 
       page.should have_content("You are now connected")

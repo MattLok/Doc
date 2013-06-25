@@ -26,9 +26,9 @@ class Ability
         #   practice.has_member?(patient)
         # end
       end
-      can [:manage], Practice do |practice|
+      can :manage, Practice do |practice|
 
-        practice.new_record? || practice.has_member?(user)
+        practice.new_record? || practice.involves?(user)
       end
     elsif user.doctor? 
       can :manage, Referral, :user_id => user.id
