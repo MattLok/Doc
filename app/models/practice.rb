@@ -35,14 +35,6 @@ class Practice < ActiveRecord::Base
     @referrals.flatten
   end
 
-  # def has_doctor?(user)
-  #   #if PracticeMembership.where("practice_id = ? AND patient_id = ?", self.id,patient.id).count > 0
-  #   if Practice.where("id = ?", user.id).count > 0 
-  #     true
-  #   else
-  #     false
-  #   end
-  # end
   def involves?(user)
     self.id == user.practice_id 
   end

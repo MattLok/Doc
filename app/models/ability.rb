@@ -7,24 +7,23 @@ class Ability
     user ||= User.new
 
     if user.practice_admin?
-      #can :manage, Appointment, :prac_mem_id => user.practice_id 
+      can :manage, Appointment do |appointment|
+        appointment.new_record? || appointment.involves?(user.practice_id) #involves practice_id 
+      end
       #can :manage, :all
       can :manage, Connection do |connection|
         connection.new_record? || connection.involves?(user)
         #connection.requestor_id == user.practice_id || connection.target_id == user.practice_id
       end
 
-      can :manage, PracticeMembership do |membership|
+      can :read, PracticeMembership do |membership|
        #:practice_id => user.practice_id
        membership.involves?(user)
       end
       #can :manage, Patient, :PracticeMembership => { :practice_id => user.practice_id}
       can :manage, Patient do |patient|
         patient.new_record? || patient.in_practice_of?(user)
-        # if user.practice.present?
-        #   practice = user.practice
-        #   practice.has_member?(patient)
-        # end
+    
       end
       can :manage, Practice do |practice|
 

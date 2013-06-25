@@ -7,4 +7,12 @@ class Appointment < ActiveRecord::Base
 
   belongs_to :practice_membership, :class_name =>"practice_membership", :foreign_key =>"prac_mem_id"
   belongs_to :user 
+
+
+
+  def involves?(user)
+    user.practice.appointments.include?(self)
+
+    #user.practice == appointment.practice_membership.practice 
+  end
 end
