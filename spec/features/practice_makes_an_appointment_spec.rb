@@ -5,8 +5,13 @@ feature "Practice Creates an appointment" do
 
   it "creates an appointment" do
 
-    @prac = FactoryGirl.create(:practice_with_doc)
+    @prac = FactoryGirl.create(:prac_with_manager) #,:practice_with_doc)
     @prac.patients.create!(:first_name => "Patient",:last_name => "Zero", :ssn => "4455")
+    admin = @prac.users.first 
+    admin.password = 'password'
+
+    sign_in_as(admin) 
+    
     count = @prac.appointments.count
     visit(new_practice_appointment_path(@prac))
 

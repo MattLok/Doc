@@ -6,6 +6,7 @@ class Connection < ActiveRecord::Base
   validates_presence_of :target_id
   validates_presence_of :status_type 
 
+  
 
   #belongs_to :practice
   #has_one :status
@@ -29,6 +30,12 @@ class Connection < ActiveRecord::Base
   def requestor_name
     @requestor = Practice.find(self.requestor_id)
     @requestor.office_name
+  end
+
+  def involves?(user)
+    self.requestor_id == user.practice_id || self.target_id == user.practice_id
+
+
   end
 
 end

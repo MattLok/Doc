@@ -14,5 +14,10 @@ class PracticeMembership < ActiveRecord::Base
     self.patient.first_name
 
   end 
+
+  def involves?(user)
+    self.practice_id == user.practice_id 
+
+  end
 end
  
