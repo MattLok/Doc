@@ -16,18 +16,48 @@
   </head>
 
   <body>
-    <nav>
-      <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>.
-        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-      <% else %>
-        <%= link_to 'Register', new_user_registration_path %> or <%= link_to 'Sign in', new_user_session_path %>
-      <% end %>
+    <nav class="top-bar">
+      <ul class="title-area">
+        
+        <li class="name">
+          <h1><a href="/">Docferral</a></h1>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
+
+      <section class="top-bar-section" style="left: 0%;">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li class="divider"></li>
+          
+          <% if user_signed_in? %>
+          <li class="">
+            Signed in as <%= current_user.email %>
+          </li>
+          <li class="divider"></li>
+          <li>
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+          </li>
+          <% else %>
+          <li class="">
+            <%= link_to 'Register', new_user_registration_path %>
+          </li> 
+          <li class="divider"></li>
+          <li class="">
+           <%= link_to 'Sign in', new_user_session_path %>
+          </li>
+          <% end %>
+         
+          <li class="divider"></li>
+        </ul>
+      </section>
     </nav>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
     <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
 
     
     <%= javascript_include_tag "application" %>
