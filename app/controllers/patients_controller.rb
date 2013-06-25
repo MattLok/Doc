@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-
+  load_and_authorize_resource
 
   def new
     @practice = Practice.find(params[:practice_id])

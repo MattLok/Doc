@@ -5,22 +5,30 @@ class Ability
 
 
     user ||= User.new
+
     if user.practice_admin?
-      can :manage, Appointment, :prac_mem_id => user.practice_id 
+      #can :manage, Appointment, :prac_mem_id => user.practice_id 
+      #can :manage, :all
       can :manage, Connection do |connection|
-        connection.involves?(user)
+        connection.new_record? || connection.involves?(user)
         #connection.requestor_id == user.practice_id || connection.target_id == user.practice_id
       end
-      # can :manage, Patient, PracticeMembership.practice_id => user.practice_id
+
+      can :manage, PracticeMembership do |membership|
+       #:practice_id => user.practice_id
+       membership.involves?(user)
+      end
+      #can :manage, Patient, :PracticeMembership => { :practice_id => user.practice_id}
       can :manage, Patient do |patient|
-        patient.in_practice_of?(user)
+        patient.new_record? || patient.in_practice_of?(user)
         # if user.practice.present?
         #   practice = user.practice
         #   practice.has_member?(patient)
         # end
       end
       can [:manage], Practice do |practice|
-        practice.involes?(user)
+
+        practice.new_record? || practice.has_member?(user)
       end
     elsif user.doctor? 
       can :manage, Referral, :user_id => user.id
@@ -30,6 +38,8 @@ class Ability
       # can :read, Appointment, :user_id => user.id
       can :read, PracticeMembership, :practice_id => user.practice_id
       can :read, Practice, user.practice
+    else
+      can :create, User
     end
         
     # Define abilities for the passed in user here. For example:

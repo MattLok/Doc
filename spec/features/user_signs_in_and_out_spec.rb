@@ -16,6 +16,12 @@ describe 'authentication' do
 
   end
 
+  it "can sign into an account 2" do
+    sign_in_as(user)
+    expect(page).to have_content("Signed in successfully")
+
+  end
+
   it "cant sign out of an account" do 
     visit new_user_session_path 
     fill_in "Email", with:user.email

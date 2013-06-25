@@ -28,7 +28,7 @@ feature "Doctor can send referrals" do
     #puts doc.id
 
     visit(new_doctor_referral_path(@doc))
-    save_and_open_page
+    #save_and_open_page
     select('Robin', :from => "referral_to_user")
     select('Pat', :from => "referral_patient_id")
     

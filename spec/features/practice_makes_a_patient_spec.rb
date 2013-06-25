@@ -5,8 +5,8 @@ require 'spec_helper'
 feature "creating a patient" do
 
   it "practice creates a patient" do
-
-    @prac = Practice.create(:office_name => "CCMD", :email => "mmmm@mm.com", :contact_name => "Matt",:phone =>"5083621609")
+    @prac = FactoryGirl.create(:prac_with_manager)
+    #@prac = Practice.create(:office_name => "CCMD", :email => "mmmm@mm.com", :contact_name => "Matt",:phone =>"5083621609")
     visit(new_practice_patient_path(@prac))
          
     fill_in "First name", with:"Carl"
@@ -15,6 +15,7 @@ feature "creating a patient" do
     
 
     page.status_code.should be 200
+    expect(page).to have_content("You made it")
 
 
   end

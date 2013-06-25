@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   ROLES = %w{practice_admin doctor}
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def practice_admin?
-    self.role == 'admin'
+    self.role == 'practice_admin'
   end
 
   def doctor?

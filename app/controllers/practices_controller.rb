@@ -1,6 +1,6 @@
 class PracticesController < ApplicationController
   load_and_authorize_resource
-   skip_authorize_resource :only => [:new, :create]
+   #skip_authorize_resource :only => [:new, :create]
 
 
   def new
@@ -17,6 +17,7 @@ class PracticesController < ApplicationController
   end
 
   def show
+    
     @practice = Practice.find(params[:id])
   end
 
