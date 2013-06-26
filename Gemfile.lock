@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_mailer_cache_delivery (0.3.5)
+      actionmailer (>= 3.0)
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
       mail (~> 2.5.3)
@@ -57,6 +59,9 @@ GEM
       devise (>= 2.1.2)
       railties (~> 3.0)
     diff-lcs (1.2.4)
+    email_spec (1.4.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -171,11 +176,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  action_mailer_cache_delivery
   cancan
   capybara
   coffee-rails (~> 3.2.1)
   devise
   devise_invitable
+  email_spec
   factory_girl_rails
   jquery-rails
   launchy

@@ -30,6 +30,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'shoulda'
+  gem 'email_spec'
+  gem 'action_mailer_cache_delivery'
 
 end
 
