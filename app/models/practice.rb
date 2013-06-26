@@ -3,6 +3,9 @@ class Practice < ActiveRecord::Base
 
   has_many :connections
   has_many :users
+  has_many :admins,
+    class_name: "User",
+    conditions: { role: "practice_admin" }
   has_many :practice_memberships
   has_many :patients, :through => :practice_memberships
   has_many :appointments, :through => :users

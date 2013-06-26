@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Practice do
   #pending "add some examples to (or delete) #{__FILE__}"
-
+  it { should have_many :admins }
 
   describe "creating a practice" do 
     it {should have_many(:referrals).through(:users)}
