@@ -37,8 +37,10 @@ class Ability
       # can :read, Appointment, :user_id => user.id
       can :read, PracticeMembership, :practice_id => user.practice_id
       can :read, Practice, user.practice
+      can :create, Practice 
     else
       can :create, User
+      can :create, Practice
     end
         
     # Define abilities for the passed in user here. For example:

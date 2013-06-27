@@ -1,5 +1,6 @@
 class Practice < ActiveRecord::Base
-  attr_accessible :contact_name, :email, :office_name, :phone
+  attr_accessible :contact_name, :email, :office_name, :phone, :users_attributes
+  
 
   has_many :connections
   has_many :users
@@ -17,6 +18,7 @@ class Practice < ActiveRecord::Base
   validates_presence_of :phone
 
   validates_format_of :email, with: /@/
+  accepts_nested_attributes_for :users
 
 
   def involves?(user)

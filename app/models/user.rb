@@ -35,6 +35,14 @@ class User < ActiveRecord::Base
     self.role == 'doctor'
   end
 
+  def has_practice?
+    practice.present?
+  end
+
+  def make_admin
+    self.update_attribute(:role, 'practice_admin')
+  end
+
 
 
 

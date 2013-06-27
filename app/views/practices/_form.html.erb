@@ -1,5 +1,17 @@
 <%= form_for(@practice) do |f| %>
 
+  <% if @practice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= f.label :office_name %>
   <%= f.text_field :office_name %><br />
 
