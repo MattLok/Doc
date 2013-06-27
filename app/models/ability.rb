@@ -36,7 +36,7 @@ class Ability
       can :read, Appointment, :user_id => user.id 
       # can :read, Appointment, :user_id => user.id
       can :read, PracticeMembership, :practice_id => user.practice_id
-      can :read, Practice, user.practice
+      can :read, Practice, :id => user.practice_id
       can :create, Practice 
     else
       can :create, User

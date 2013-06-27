@@ -1,0 +1,22 @@
+<h1>Upcoming Appointments</h1>
+
+<% if @appointments.count == 0 %>
+  <p>No upcoming appointments at this time</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Doctor</th>
+      <th>Patient</th>
+    </tr>
+  <% @appointments.each do |appointment| %>
+    <tr>
+      <td><%= appointment.date %></td>
+      <td><%= appointment.doctor_name %></td>
+      <td><%= appointment.patient_name %></td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<%= link_to 'Practice', practice_path(@practice) %>

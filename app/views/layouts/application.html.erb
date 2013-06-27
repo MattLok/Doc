@@ -28,12 +28,14 @@
 
       <section class="top-bar-section" style="left: 0%;">
         <!-- Right Nav Section -->
-        <ul class="right">
+        <ul class="right navbar-bg">
           <li class="divider"></li>
           
           <% if user_signed_in? %>
           <li class="">
-            Signed in as <%= current_user.email %>
+            <a>
+              Signed in as <%= current_user.email %>
+            </a>
           </li>
           <li class="divider"></li>
           <li>

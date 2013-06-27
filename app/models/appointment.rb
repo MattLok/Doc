@@ -15,4 +15,16 @@ class Appointment < ActiveRecord::Base
 
     #user.practice == appointment.practice_membership.practice 
   end
+
+  def doctor_name
+    @doc = User.find(self.user_id)
+    @name = "#{@doc.first_name} #{@doc.last_name}"
+
+  end
+  def patient_name
+    @record = PracticeMembership.find(self.prac_mem_id)
+    @patient = Patient.find(@record.patient_id)
+    @name = "#{@patient.first_name} #{@patient.last_name}"
+
+  end
 end

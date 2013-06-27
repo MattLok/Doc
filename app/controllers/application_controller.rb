@@ -18,4 +18,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_in_path_for(resource)
+    #binding.pry 
+    if resource.practice.present?
+      practice_path(resource.practice)
+    else
+      new_practice_path
+    end
+  end
+
 end

@@ -10,5 +10,17 @@
  *
  *= require_self
  *= require_tree .
+ //= require foundation_and_overrides
  */
- *= require foundation_and_overrides
+ 
+
+
+.bor {
+
+  border: 1px solid;
+}
+
+.full_width {
+  width:100%;
+  min-width:100%;
+}

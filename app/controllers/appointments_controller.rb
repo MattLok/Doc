@@ -29,6 +29,13 @@ class AppointmentsController < ApplicationController
 
   end
 
+  def index
+    #binding.pry
+    @practice = Practice.find(params[:practice_id])
+    @appointments = @practice.appointments 
+
+  end
+
 
 
 end
