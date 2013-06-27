@@ -17,7 +17,6 @@ class PracticesController < ApplicationController
       @user.practice_id = @practice.id 
       @user.make_admin
       @user.save
-      binding.pry
 
      redirect_to @practice, notice:"Practice Created"
     else
@@ -26,7 +25,6 @@ class PracticesController < ApplicationController
   end
 
   def show
-    binding.pry
     @practice = Practice.find(params[:id])
   end
 

@@ -13,7 +13,6 @@ feature "Signing up a practice" do
   it "creates a user then a redirects to practice creation" do 
     visit(root_path)
     click_on "Sign up"
-    save_and_open_page
 
     fill_in 'First name', with:'Matt'
     fill_in 'Last name', with:'Mdog'

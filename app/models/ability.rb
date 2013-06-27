@@ -40,7 +40,7 @@ class Ability
       can :create, Practice 
     else
       can :create, User
-      can :create, Practice
+      #can :create, Practice
     end
         
     # Define abilities for the passed in user here. For example:
