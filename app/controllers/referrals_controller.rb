@@ -30,6 +30,12 @@ class ReferralsController < ApplicationController
 
   end
 
+  def index
+    @practice = Practice.find(params[:practice_id])
+    @referrals = @practice.referrals 
+
+  end
+
 
 
 end

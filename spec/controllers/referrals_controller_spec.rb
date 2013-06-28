@@ -9,7 +9,7 @@ describe ReferralsController do
     @admin = prac_manager.users.first
    
     sign_in_as(@admin)
-    click_link('Doctors')
+    click_link('Referrals')
     
     expect(page).to have_content("Doctors")
 
