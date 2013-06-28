@@ -1,0 +1,21 @@
+<h1>Referrals</h1>
+
+  <table>
+    <tr>
+      <th>Sender</th>
+      <th>Receiver</th>
+      <th>Patient</th>
+    </tr>
+
+    <% @referrals.each do |referral| %>
+      <tr>
+        <td><%= referral.get_name %></td>
+        <td><%= referral.get_name("to_user") %></td>
+        <td><%= referral.patient_name %></td>
+      </tr>
+
+    <% end %>
+
+  </table>
+
+<%= link_to 'Practice', practice_path(@practice) %>

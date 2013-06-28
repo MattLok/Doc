@@ -53,4 +53,38 @@ class Referral < ActiveRecord::Base
   #grab all referrals that belong to specific practice 
   #first need to check if the doctor belongs to the practice 
 
+
+  def get_name(name = "user_id")
+    #binding.pry
+    if name == "user_id"
+      @user = User.find(self.user_id)
+    else
+      @user = User.find(self.to_user)
+    end
+    @name = "#{@user.first_name} #{@user.last_name}"
+  end
+
+  def patient_name
+    @record = PracticeMembership.where("patient_id = ? ", self.patient_id).first 
+    @patient = Patient.find(@record.patient_id)
+    @name = "#{@patient.first_name} #{@patient.last_name}"
+
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end

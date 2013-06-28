@@ -31,7 +31,6 @@ class ReferralsController < ApplicationController
   end
 
   def index
-    binding.pry
     
     @practice = current_user.practice
     @referrals = @practice.referrals 
