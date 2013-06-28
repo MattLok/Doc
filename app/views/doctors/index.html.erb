@@ -1,0 +1,18 @@
+<h1><%= "#{@practice.office_name} Doctors" %></h1>
+
+  <% @doctors.each_slice(3) do |slice| %>
+ <% binding.pry %>
+    <div class="row">
+      <% slice.each do |doc| %>
+        <div class="large-2 columns bor">
+          <p><%= doc.first_name %></p></br>
+          <p><%= doc.last_name %></p></br>
+          <p><%= doc.email %></p></br>
+          <p><%= doc.role %></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+
+    <%= link_to 'Practice', practice_path(@practice) %> 

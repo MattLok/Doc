@@ -10,6 +10,7 @@ Docfer::Application.routes.draw do
 
   resources :practices do 
     resources :users 
+    resources :doctors, only:[:index]
     resources :patients
     resources :connections, only:[:new, :create,:destroy,:index, :update]
   end

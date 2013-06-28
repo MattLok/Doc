@@ -5,7 +5,7 @@
       <li class="active"><%= link_to 'Practice', practice_path %></li>
       <li><%= link_to 'Appointments', practice_appointments_path(@practice) %></li>
       <li><%= link_to 'Connections', practice_connections_path(@practice) %></li>
-      <li><%= link_to 'Doctors', practice_users_path(@practice) %></li>
+      <li><%= link_to 'Doctors', practice_doctors_path(@practice), :controller => :users, :action => :index %></li>
       <li><%= link_to 'Referrals',doctor_referrals_path(@practice) %></li>
     </ul>
 
