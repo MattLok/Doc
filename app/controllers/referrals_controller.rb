@@ -31,7 +31,9 @@ class ReferralsController < ApplicationController
   end
 
   def index
-    @practice = Practice.find(params[:practice_id])
+    binding.pry
+    
+    @practice = current_user.practice
     @referrals = @practice.referrals 
 
   end

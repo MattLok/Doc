@@ -46,7 +46,7 @@ class Referral < ActiveRecord::Base
 
   def involves?(user)
     #self.requestor_id == user.practice_id || self.target_id == user.practice_id
-    
+    user.practice.referrals.include?(self) || user.practice.received_referrals.include?(self)
   end
 
 

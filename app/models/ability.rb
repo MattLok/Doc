@@ -29,6 +29,9 @@ class Ability
 
         practice.new_record? || practice.involves?(user)
       end
+      can :read, Referral do |referral|
+        referral.involves?(user)
+      end
     elsif user.doctor? 
       can :manage, Referral, :user_id => user.id
      # can :read, :all

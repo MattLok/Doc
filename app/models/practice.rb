@@ -11,6 +11,9 @@ class Practice < ActiveRecord::Base
   has_many :patients, :through => :practice_memberships
   has_many :appointments, :through => :users
   has_many :referrals, :through => :users
+  has_many :received_referrals, 
+    class_name: 'Referral',
+    foreign_key: 'to_user'
 
   validates_presence_of :office_name
   validates_presence_of :contact_name
