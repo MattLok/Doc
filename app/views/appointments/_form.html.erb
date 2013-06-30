@@ -1,6 +1,7 @@
 
 <%= form_for [@practice,@appointment] do |f| %>
 
+
   <%= f.label :date %>
   <%= f.date_select :date, {:start_year => Time.now.year}, {:class =>"date-style large-4 columns"} %></br>
   <%= f.label :doctor %>

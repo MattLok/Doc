@@ -27,4 +27,15 @@ class Appointment < ActiveRecord::Base
     @name = "#{@patient.first_name} #{@patient.last_name}"
 
   end
+
+  def self.upcoming
+
+    @appointments = Appointment.where("date > ?", Time.now).order('date ASC')
+  end
+
+  def self.past
+
+    @appointments = Appointment.where("date < ?", Time.now).order('date DESC')
+
+  end
 end

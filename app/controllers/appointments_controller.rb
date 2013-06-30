@@ -17,10 +17,12 @@ class AppointmentsController < ApplicationController
     @patient = PracticeMembership.find(params[:appointment][:prac_mem_id]).patient
     @doctor = User.find(params[:appointment][:user_id])
     @appointment = @practice.appointments.new(params[:appointment])
-    @appointment.date = params[:appointment][:date]
+    
+    @date = "#{params[:appointment]["date(1i)"]}/#{params[:appointment]["date(2i)"]}/#{params[:appointment]["date(3i)"]}"
+    @appointment.date = @date
     @practice_membership = PracticeMembership.where(:practice_id =>@practice.id, :patient_id => @patient.id ).first
     @appointment.prac_mem_id = @practice_membership.id
-   
+    binding.pry
     if @appointment.save
       redirect_to @practice, notice:"Appointment Created"
     else
