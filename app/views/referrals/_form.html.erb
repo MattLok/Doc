@@ -1,14 +1,15 @@
 <%= form_for [@doctor, @referral], :url => doctor_referrals_path(@doctor) do |f| %>
 
-  <p>Connected Doctors</p>
-  <%= f.collection_select :to_user, @referral.connected_docs, :id, :full_name, include_blank:true %></br>
-  <p>Patients</p>
-  <%= f.collection_select :patient_id, @patients, :id, :full_name, include_blank: true %></br>
-  <p>Notes</p>
+  <%= f.label :connected_doctors %>
+  <%= f.collection_select :to_user, @referral.connected_docs, :id, :full_name, include_blank:true %><br /><br />
+  <%= f.label :patients %>
+  <%= f.collection_select :patient_id, @patients, :id, :full_name, include_blank: true %><br /><br />
   <%= f.label :notes %>
-  <%= f.text_area :notes %></br>
+  <%= f.text_area :notes, :class=>"min-notes" %></br>
 
-
-  <%= f.submit "Send Referral" %>
-
+  <div class="row">
+    <div class="small-7 small-centered columns">
+      <%= f.submit "Send Referral", :class=>"tiny button" %>
+    </div>
+  </div>
 <% end %>
