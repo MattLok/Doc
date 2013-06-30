@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    binding.pry
+    #binding.pry
     @practice = Practice.find(params[:practice_id])
     @doctors = @practice.users 
 

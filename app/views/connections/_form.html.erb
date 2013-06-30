@@ -3,7 +3,7 @@
 <%= form_for [@practice, @connection] do |f| %>
   
   <%= f.collection_select :target_id, @all_pracs, :id, :office_name, include_blank: true %></br> 
-
+  <% binding.pry %> 
 
 
   <%= f.submit "Send Connection Request" %>

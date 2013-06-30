@@ -12,15 +12,15 @@ class AppointmentsController < ApplicationController
 
 
   def create
-    #binding.pry
+    
     @practice = Practice.find(params[:practice_id])
     @patient = PracticeMembership.find(params[:appointment][:prac_mem_id]).patient
     @doctor = User.find(params[:appointment][:user_id])
     @appointment = @practice.appointments.new(params[:appointment])
-
+    @appointment.date = params[:appointment][:date]
     @practice_membership = PracticeMembership.where(:practice_id =>@practice.id, :patient_id => @patient.id ).first
     @appointment.prac_mem_id = @practice_membership.id
-
+   
     if @appointment.save
       redirect_to @practice, notice:"Appointment Created"
     else
@@ -30,9 +30,12 @@ class AppointmentsController < ApplicationController
   end
 
   def index
-    #binding.pry
-    @practice = Practice.find(params[:practice_id])
-    @appointments = @practice.appointments 
+    
+    @practice = current_user.practice
+    @appointments = @practice.appointments.where("user_id IS NOT NULL") 
+    @appointment = @practice.appointments.build(params[:appointment])
+    @doctors = @practice.users
+    @patients = @practice.patients
 
   end
 

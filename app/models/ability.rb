@@ -9,7 +9,7 @@ class Ability
     if user.practice_admin?
       can :manage, Appointment do |appointment|
         appointment.new_record? || appointment.involves?(user.practice_id) #involves practice_id 
-      end
+      end 
       #can :manage, :all
       can :manage, Connection do |connection|
         connection.new_record? || connection.involves?(user)

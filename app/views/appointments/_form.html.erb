@@ -1,11 +1,13 @@
+
 <%= form_for [@practice,@appointment] do |f| %>
 
   <%= f.label :date %>
   <%= f.text_field :date %></br>
-
+  <%= f.label :doctor %>
   <%= f.collection_select :user_id, @doctors, :id, :first_name, include_blank: true %></br>
+  <%= f.label :patient %>
   <%= f.collection_select :prac_mem_id, @practice.practice_memberships, :id, :get_first_name,
-    inlcude_blank: true %>
+    inlcude_blank: true %><br />
 
 
 

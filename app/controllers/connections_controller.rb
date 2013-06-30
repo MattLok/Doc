@@ -29,9 +29,11 @@ class ConnectionsController < ApplicationController
 
   def index
 
-    @practice = Practice.find(params[:practice_id])
+    @practice = current_user.practice
     @connections = Connection.where("target_id = ?", @practice.id).where(:status_type => "Pending")
-    #binding.pry
+    @connection = Connection.new(params[:connection])
+    @all_pracs = Practice.all 
+    binding.pry
   end
 
   def update
