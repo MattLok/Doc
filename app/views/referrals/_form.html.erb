@@ -1,9 +1,9 @@
 <%= form_for [@doctor, @referral], :url => doctor_referrals_path(@doctor) do |f| %>
 
   <p>Connected Doctors</p>
-  <%= f.collection_select :to_user, @referral.connected_docs, :id, :first_name, include_blank:true %></br>
+  <%= f.collection_select :to_user, @referral.connected_docs, :id, :full_name, include_blank:true %></br>
   <p>Patients</p>
-  <%= f.collection_select :patient_id, @patients, :id, :first_name, include_blank: true %></br>
+  <%= f.collection_select :patient_id, @patients, :id, :full_name, include_blank: true %></br>
   <p>Notes</p>
   <%= f.label :notes %>
   <%= f.text_area :notes %></br>

@@ -36,6 +36,7 @@ class AppointmentsController < ApplicationController
     @appointment = @practice.appointments.build(params[:appointment])
     @doctors = @practice.users
     @patients = @practice.patients
+    
 
   end
 

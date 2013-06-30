@@ -3,7 +3,7 @@
 
   <% if @appointments.count == 0 %>
     <p>No upcoming appointments at this time</p>
-  <% else %>
+  <% elsif current_user.role =='practice_admin' %>
     <table>
       <tr>
         <th>Date</th>
@@ -18,12 +18,31 @@
       </tr>
       <% end %>
     </table>
-  <% end %>
+    <% elsif current_user.role =='doctor' %>
+      <% if current_user.appointments.count == 0 %>
+        <p>No upcoming appointments at this time</p>
+      <% else %>
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Patient</th>
+        </tr>
+        <% current_user.appointments.each do |appointment| %>
+          <tr>
+            <td><%= appointment.date %></td>
+            <td><%= appointment.patient_name %></td>
+          </tr>
+        <% end %>
+      </table> 
+      <% end %>
+    <% end %>
   <%= link_to 'Practice', practice_path(@practice) %>
 </div>
-<div class="large-3 columns bor">
-  <h3>Schedule an Appointment</h3>
-  <%= render :partial => 'appointments/form' %>
-</div>
+<% if current_user.role =="practice_admin" %>
+  <div class="large-3 columns bor">
+    <h3>Schedule an Appointment</h3>
+    <%= render :partial => 'appointments/form' %>
+  </div>
+<% end %>
 
 

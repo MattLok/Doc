@@ -1,5 +1,5 @@
 class Patient < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :ssn
+  attr_accessible :first_name, :last_name, :ssn, :fullname
 
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -18,6 +18,11 @@ class Patient < ActiveRecord::Base
       practice.has_member?(self)
     end
 
+
+  end
+
+  def full_name
+    @fullname ||= "#{self.first_name} #{self.last_name}"
 
   end
   

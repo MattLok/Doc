@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
   belongs_to :practice
   has_many :appointments 
   has_many :referrals
+  has_many :received_referrals, 
+    class_name: 'Referral',
+    foreign_key: 'to_user'
 
   before_save :default_values
   def default_values
@@ -43,7 +46,10 @@ class User < ActiveRecord::Base
     self.update_attribute(:role, 'practice_admin')
   end
 
+  def full_name
 
+    @name = "#{self.first_name} #{self.last_name}"
+  end
 
 
 

@@ -34,7 +34,10 @@ class ReferralsController < ApplicationController
     
     @practice = current_user.practice
     @referrals = @practice.referrals 
-
+    @doctor = current_user
+    @referral = @doctor.referrals.build(params[:referral])
+    @patients = @practice.patients
+   # binding.pry
   end
 
 

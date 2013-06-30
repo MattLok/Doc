@@ -38,4 +38,5 @@ class Connection < ActiveRecord::Base
 
   end
 
+
 end

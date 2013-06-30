@@ -33,7 +33,7 @@ class ConnectionsController < ApplicationController
     @connections = Connection.where("target_id = ?", @practice.id).where(:status_type => "Pending")
     @connection = Connection.new(params[:connection])
     @all_pracs = Practice.all 
-    binding.pry
+    #binding.pry
   end
 
   def update
