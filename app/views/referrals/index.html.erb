@@ -1,27 +1,69 @@
-<div class="large-7 columns">
+<div class="large-7 columns bor">
 
 
   <h1>Referrals</h1>
-
+  <div class="large-12 columns">
+    <h3>Sent</h3>
+    <% if @referrals.count == 0 %>
+      <p>You haven't sent any referrals</p>
+    <% elsif @referrals.count > 0 %>
     <table>
       <tr>
         <th>Sender</th>
+        <th>To Practice</th>
         <th>Receiver</th>
         <th>Patient</th>
+        <th>Date</th>
       </tr>
 
       <% @referrals.each do |referral| %>
+
         <tr>
           <td><%= referral.get_name %></td>
+          <td><%= referral.receiving_practice_name %></td>
           <td><%= referral.get_name("to_user") %></td>
           <td><%= referral.patient_name %></td>
+          <td><%= referral.created_at.strftime("%b %d,%y") %></td>
         </tr>
 
       <% end %>
 
     </table>
+    <% end %>
+  </div>
+  <div class="large-12 columns">
+    <h3>Received</h3>
+    <% if @received.count == 0 %>
 
-  <%= link_to 'Practice', practice_path(@practice) %>
+      <p>No referrals have been received </p>
+    <% elsif @received.count > 0 %>
+
+    <table>
+      <tr>
+        <th>Receiver</th>
+        <th>From Practice</th>
+        <th>Sender</th>
+        <th>Patient</th>
+        <th>Date</th>
+      </tr>
+
+      <% @received.each do |referral| %>
+      
+        <tr>
+          <td><%= referral.get_name("to_user") %></td>
+          <td><%= referral.senders_practice_name %></td>
+          <td><%= referral.get_name %></td>
+          <td><%= referral.patient_name %></td>
+          <td><%= referral.created_at.strftime("%b %d,%y") %></td>
+        </tr>
+
+      <% end %>
+
+    </table>
+    <% end %>
+    <%= link_to 'Practice', practice_path(@practice) %>
+  </div>
+  
 </div>
 <% if current_user.role == 'doctor' %>
   <div class="large-3 columns">

@@ -11,7 +11,7 @@ class Practice < ActiveRecord::Base
   has_many :patients, :through => :practice_memberships
   has_many :appointments, :through => :users
   has_many :referrals, :through => :users
-  has_many :received_referrals, 
+  has_many :received_referrals, :through => :users, 
     class_name: 'Referral',
     foreign_key: 'to_user'
 

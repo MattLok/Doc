@@ -23,7 +23,7 @@ class ReferralsController < ApplicationController
     #binding.pry
 
     if @referral.save 
-      redirect_to doctor_path(@doctor), notice: "Referral Sent"
+      redirect_to practice_path(@doctor.practice), notice: "Referral Sent"
     else
       render(action:'new')
     end
@@ -33,7 +33,14 @@ class ReferralsController < ApplicationController
   def index
     
     @practice = current_user.practice
-    @referrals = @practice.referrals 
+    if current_user.role == 'practice_admin'
+      @referrals = @practice.referrals.where("user_id IS NOT NULL")
+      @received = @practice.received_referrals
+    else
+      @referrals = current_user.referrals.where("user_id IS NOT NULL")
+      @received = current_user.received_referrals
+
+    end 
     @doctor = current_user
     @referral = @doctor.referrals.build(params[:referral])
     @patients = @practice.patients

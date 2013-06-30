@@ -50,9 +50,6 @@ class Referral < ActiveRecord::Base
   end
 
 
-  #grab all referrals that belong to specific practice 
-  #first need to check if the doctor belongs to the practice 
-
 
   def get_name(name = "user_id")
     #binding.pry
@@ -71,8 +68,14 @@ class Referral < ActiveRecord::Base
 
   end
 
+  def receiving_practice_name
+    @practice = User.find(self.to_user).practice.office_name
 
+  end
 
+  def senders_practice_name
+    @practice = User.find(self.user_id).practice.office_name
+  end
 
 
 
