@@ -19,5 +19,10 @@ class PracticeMembership < ActiveRecord::Base
     self.practice_id == user.practice_id 
 
   end
+
+  def full_name 
+
+    @name = "#{self.patient.first_name} #{self.patient.last_name}"
+  end
 end
  

@@ -1,5 +1,5 @@
 <div class="large-7 columns bor"> 
-  <h1>Pending Practice Connections</h1>
+  <h3>Pending Practice Connections</h3>
 
   <% if @connections.count == 0 %>
     <p>No pending connections at this time</p>
@@ -12,7 +12,7 @@
     <% @connections.each do |connection| %>
       <tr>
         <td><%= connection.requestor_name %></td>
-        <td><%= render 'accept' %></td>
+        <td style="padding-bottom"><%= render 'accept' %></td>
 
       </tr>
       <% end %>
@@ -21,7 +21,7 @@
     <%= link_to 'Practice', practice_path(@practice) %>
 </div>
 <div class="large-3 columns bor">
-  <h3> Send a Connection Request</h3>
-  <%= render :partial =>'connections/form' %>s
+  <h5> Connect Your Practice</h5>
+  <%= render :partial =>'connections/form' %>
 
 </div>
