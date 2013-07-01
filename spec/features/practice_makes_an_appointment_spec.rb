@@ -15,7 +15,10 @@ feature "Practice Creates an appointment" do
     count = @prac.appointments.count
     visit(new_practice_appointment_path(@prac))
 
-    fill_in 'Date', with:'7/4/2013'
+    #fill_in 'Date', with:'7/4/2013'
+    select('2013', :from => "appointment_date_1i")
+    select('August', :from => "appointment_date_2i")
+    select('20', :from => "appointment_date_3i")
     #find_field('appointment_doctor_id').last
 
     select('Julius', :from => "appointment_user_id")

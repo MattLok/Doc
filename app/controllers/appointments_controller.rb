@@ -22,7 +22,6 @@ class AppointmentsController < ApplicationController
     @appointment.date = @date
     @practice_membership = PracticeMembership.where(:practice_id =>@practice.id, :patient_id => @patient.id ).first
     @appointment.prac_mem_id = @practice_membership.id
-    binding.pry
     if @appointment.save
       redirect_to @practice, notice:"Appointment Created"
     else

@@ -87,5 +87,15 @@ feature "Practice sends a connection request" do
 
     end
 
+    # it "can only select practice not connected to" do 
+    #   @prac1 = FactoryGirl.create(:prac_with_manager)
+    #   @prac2 = FactoryGirl.create(:prac_with_manager)
+    #   admin = @prac1.users.first
+    #   sign_in_as(admin)
+    #   visit(new_practice_connection_path(@prac1))
+
+
+    # end
+
   
 end
