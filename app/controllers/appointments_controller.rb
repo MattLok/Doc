@@ -34,7 +34,11 @@ class AppointmentsController < ApplicationController
   def index
     
     @practice = current_user.practice
-    @appointments = @practice.appointments.where("user_id IS NOT NULL") 
+    if current_user.role == 'practice_admin'
+      @appointments = @practice.appointments.where("user_id IS NOT NULL") 
+    else
+      @appointments = current_user.appointments
+    end
     @appointment = @practice.appointments.build(params[:appointment])
     @doctors = @practice.users
     @patients = @practice.patients
