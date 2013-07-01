@@ -14,6 +14,7 @@
         <th>Receiver</th>
         <th>Patient</th>
         <th>Date</th>
+        <th>Notes</th>
       </tr>
 
       <% @referrals.each do |referral| %>
@@ -24,6 +25,7 @@
           <td><%= referral.get_name("to_user") %></td>
           <td><%= referral.patient_name %></td>
           <td><%= referral.created_at.strftime("%b %d,%y") %></td>
+          <td><%= link_to "Show", doctor_referral_path(current_user,referral), remote: true %>
         </tr>
 
       <% end %>
@@ -45,16 +47,17 @@
         <th>Sender</th>
         <th>Patient</th>
         <th>Date</th>
+        <th>Notes</th>
       </tr>
 
       <% @received.each do |referral| %>
-      
         <tr>
           <td><%= referral.get_name("to_user") %></td>
           <td><%= referral.senders_practice_name %></td>
           <td><%= referral.get_name %></td>
           <td><%= referral.patient_name %></td>
           <td><%= referral.created_at.strftime("%b %d,%y") %></td>
+          <td><%= link_to "Show", doctor_referral_path(current_user,referral), remote: true %></td>
         </tr>
 
       <% end %>
@@ -63,7 +66,7 @@
     <% end %>
     <%= link_to 'Practice', practice_path(@practice) %>
   </div>
-  
+
 </div>
 <% if current_user.role == 'doctor' %>
   <div class="large-3 columns">
@@ -73,3 +76,12 @@
   </div>
 
 <% end %>
+<h3>Notes</h3>
+<div id ="note-holder" class="large-3 columns">
+</div>
+
+
+
+
+
+

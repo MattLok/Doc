@@ -20,7 +20,7 @@ Docfer::Application.routes.draw do
   # resources :users do 
 
   resources :users, path: "doctors", only: [:show], as: "doctors", controller:"doctors" do
-    resources :referrals, only:[:new,:create, :index]
+    resources :referrals, only:[:new,:create, :index,:show]
   end
 
   resources :practices do

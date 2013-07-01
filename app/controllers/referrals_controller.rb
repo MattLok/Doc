@@ -30,6 +30,15 @@ class ReferralsController < ApplicationController
 
   end
 
+  def show
+    @referral = Referral.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
+  end
+
   def index
     
     @practice = current_user.practice
