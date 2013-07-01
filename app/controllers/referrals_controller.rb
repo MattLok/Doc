@@ -44,6 +44,10 @@ class ReferralsController < ApplicationController
     @doctor = current_user
     @referral = @doctor.referrals.build(params[:referral])
     @patients = @practice.patients
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: [@referrals,@received]}
+    end
    # binding.pry
   end
 
