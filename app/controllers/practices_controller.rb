@@ -14,7 +14,7 @@ class PracticesController < ApplicationController
     @practice = Practice.new(params[:practice])
     @user = current_user
     if @practice.save
-      @user.practice_id = @practice.id 
+      @user.practice_id = @practice.id
       @user.make_admin
       @user.save
 
@@ -25,7 +25,33 @@ class PracticesController < ApplicationController
   end
 
   def show
-    @practice = Practice.find(params[:id])
+    @practice = current_user.practice
+    @referrals = @practice.referrals
+    @received_referrals = @practice.received_referrals
+
+    respond_to do |format|
+      format.html
+      #format.json {render json: @referrals.to_json(:include => { :user => { :only => :practice_id}})}
+      #format.json {render json: @referrals.to_json(:methods => :recipient, :include => { :user => { :include => {:practice => {:only => :office_name} }}})}
+
+      format.json {
+        render :json => {
+          :referrals => @referrals.as_json(:include => {
+            :user => {
+             :include => {
+              :practice => {
+                :only => :office_name} }}}),
+          :received_referrals => @received_referrals.as_json(:methods => :recipient,
+            :include => {
+              :user => {
+                :include => {
+                  :practice => {
+                    :only => :office_name} }}})
+      }
+    }
+
+    end
+
   end
 
 end

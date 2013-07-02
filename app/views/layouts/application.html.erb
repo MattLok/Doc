@@ -8,8 +8,8 @@
   	<meta charset="utf-8" />
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-
+  	<title><%= content_for?(:title) ? yield(:title) : "Docferral" %></title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
@@ -19,7 +19,7 @@
     <div class="fixed">
       <nav class="top-bar">
         <ul class="title-area">
-          
+
           <li class="name">
             <h1><a href="/">Docferral</a></h1>
           </li>
@@ -31,7 +31,7 @@
           <!-- Right Nav Section -->
           <ul class="right navbar-bg">
             <li class="divider"></li>
-            
+
             <% if user_signed_in? %>
             <li class="">
               <a>
@@ -45,13 +45,13 @@
             <% else %>
             <li class="">
               <%= link_to 'Register', new_user_registration_path %>
-            </li> 
+            </li>
             <li class="divider"></li>
             <li class="">
              <%= link_to 'Sign in', new_user_session_path %>
             </li>
             <% end %>
-           
+
             <li class="divider"></li>
           </ul>
         </section>
@@ -72,11 +72,11 @@
             <div class="alert"><%= flash[:alert] %></div>
           <% end %>
         </div>
-      
-       
+
+
         <% if user_signed_in? && (current_user.role == 'practice_admin') %>
           <%= render :partial => 'shared/sideNav' %>
-        <% elsif user_signed_in? && (current_user.role == 'doctor') %> 
+        <% elsif user_signed_in? && (current_user.role == 'doctor') %>
           <%= render :partial => 'shared/sideNavDoc' %>
         <% end %>
 
@@ -87,11 +87,11 @@
           <% 100.times do |x|%>
             <br />
             <% end %>
-
-          
-          <%= javascript_include_tag "application" %>
       </div>
     </div>
+
+    <%= javascript_include_tag "application" %>
+    <%= yield :extra_footer %>
   </body>
 </html>
 

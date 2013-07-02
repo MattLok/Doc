@@ -10,6 +10,7 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'cancan'
 gem 'simple_form'
+#gem 'd3_rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,7 +25,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development, :test do 
+group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'capybara'
@@ -36,7 +37,7 @@ group :development, :test do
 
 end
 
-group :test do 
+group :test do
   gem "nyan-cat-formatter"
 end
 

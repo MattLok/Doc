@@ -1,9 +1,45 @@
 
-  
+
   <div class="large-10 columns bor">
     <h3><%= @practice.office_name %></h3>
-
-    <% a = PracticeMembership.count %>
-    <p><%= a %></p>
+    <h4>Referrals</h4>
+    <div id="chart"><h5>Received</h5></div>
   </div>
 
+<%= content_for :extra_footer do %>
+   <script>
+
+    // set up our data series with 50 random data points
+
+      var seriesData = [ [], [], [] ];
+      var random = new Rickshaw.Fixtures.RandomData(150);
+
+      for (var i = 0; i < 70; i++) {
+        random.addData(seriesData);
+      }
+
+    // instantiate our graph!
+
+      var graph = new Rickshaw.Graph( {
+        element: document.getElementById("chart"),
+        width: 550,
+        height: 400,
+        renderer: 'bar',
+        series: [
+        {
+          color: "#c05020",
+          data: seriesData[0],
+        },
+        {
+          color: "#30c020",
+          data: seriesData[1],
+        },
+        {
+          color: "#6060c0",
+          data: seriesData[2],
+        }]
+      });
+
+      graph.render();
+    </script>
+<% end %>
