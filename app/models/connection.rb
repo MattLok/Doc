@@ -32,6 +32,19 @@ class Connection < ActiveRecord::Base
     @requestor.office_name
   end
 
+  def target_name 
+    @sender = Practice.find(self.target_id)
+    @sender.office_name
+  end
+
+  def get_name(user)
+    if self.requestor_id == user.practice_id 
+      target_name 
+    elsif self.target_id == user.practice_id 
+      requestor_name
+    end
+  end
+
   def involves?(user)
     self.requestor_id == user.practice_id || self.target_id == user.practice_id
 

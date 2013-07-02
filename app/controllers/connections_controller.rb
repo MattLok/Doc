@@ -4,7 +4,7 @@ class ConnectionsController < ApplicationController
   def new 
 
     @practice = Practice.find(params[:practice_id])
-    @all_pracs = Practice.all 
+    @all_pracs = @practice.potential_connections
     @connection = Connection.new()
     #binding.pry
 
@@ -32,7 +32,8 @@ class ConnectionsController < ApplicationController
     @practice = current_user.practice
     @connections = Connection.where("target_id = ?", @practice.id).where(:status_type => "Pending")
     @connection = Connection.new(params[:connection])
-    @all_pracs = Practice.all 
+    @all_pracs = @practice.potential_connections
+    @accepted_connections = @practice.accepted_connections 
     #binding.pry
   end
 
