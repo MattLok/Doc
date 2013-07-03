@@ -69,12 +69,12 @@ class Referral < ActiveRecord::Base
   end
 
   def receiving_practice_name
-    @practice = User.find(self.to_user).practice.office_name
+    @practice = self.user.practice.office_name
 
   end
 
   def senders_practice_name
-    @practice = User.find(self.user_id).practice.office_name
+    @practice = self.user.practice.office_name
   end
 
   # def self.senders_practice_name
