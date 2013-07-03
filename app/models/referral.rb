@@ -9,6 +9,12 @@ class Referral < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :patient
+  belongs_to :to_user_object,
+    foreign_key: :to_user,
+    class_name: "User"
+
+
+
 
   #has_one :status
 
@@ -81,13 +87,17 @@ class Referral < ActiveRecord::Base
   #   @practice_name =
   # end
 
-  def recipient
-    User.find_by_id(to_user)
+  def recipient_practice
+    to_user_object.practice
+  end
+
+  def sender_practice
+    User.find_by_id(user_id).practice
 
   end
 
-  def sender
-    User.find_by_id(user_id)
+  def created_at_month
+    DateTime.parse(created_at).strftime("%B")
 
   end
 

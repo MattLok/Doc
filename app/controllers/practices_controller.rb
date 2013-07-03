@@ -3,6 +3,8 @@ class PracticesController < ApplicationController
    #skip_authorize_resource :only => [:new, :create]
    skip_before_filter :check_user_has_practice!, :only =>[:new,:create,:show]
 
+   helper_method :monthly_referrals
+
   def new
 
     @practice = Practice.new()
@@ -29,30 +31,26 @@ class PracticesController < ApplicationController
     @referrals = @practice.referrals
     @received_referrals = @practice.received_referrals
 
-    respond_to do |format|
-      format.html
-      #format.json {render json: @referrals.to_json(:include => { :user => { :only => :practice_id}})}
-      #format.json {render json: @referrals.to_json(:methods => :recipient, :include => { :user => { :include => {:practice => {:only => :office_name} }}})}
-
-      format.json {
-        render :json => {
-          :referrals => @referrals.as_json(:methods =>:recipient,
-            :include => {
-              :user => {
-               :include => {
-                :practice => {
-                  :only => :office_name} }}}),
-          :received_referrals => @received_referrals.as_json(:methods => :sender,
-            :include => {
-              :user => {
-                :include => {
-                  :practice => {
-                    :only => :office_name} }}})
-      }
-    }
-
-    end
-
   end
 
+  protected
+
+  def senders
+    User.find(@practice.received_referrals.pluck(:user_id))
+  end
+
+  def monthly_referrals
+    data = senders.map do |sender|
+      {:name => sender.practice.office_name, :data => hash_fix(sender.referrals.group_by_month(:created_at).count) }
+    end
+
+    # senders.first.referrals.group_by_month(:created_at).count.each{|k,v| h[DateTime.parse(k).strftime("%B")] = v }
+    # binding.pry
+  end
+
+  def hash_fix(thing)
+    h = {}
+    thing.each{|k,v| h[DateTime.parse(k).strftime("%B")] = v }
+    h
+  end
 end

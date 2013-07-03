@@ -1,6 +1,6 @@
 class Practice < ActiveRecord::Base
   attr_accessible :contact_name, :email, :office_name, :phone, :users_attributes
-  
+
 
   has_many :connections_as_requestor,
     class_name: 'Connection',
@@ -17,7 +17,7 @@ class Practice < ActiveRecord::Base
   has_many :patients, :through => :practice_memberships
   has_many :appointments, :through => :users
   has_many :referrals, :through => :users
-  has_many :received_referrals, :through => :users, 
+  has_many :received_referrals, :through => :users,
     class_name: 'Referral',
     foreign_key: 'to_user'
 
@@ -49,7 +49,7 @@ class Practice < ActiveRecord::Base
   end
 
   def involves?(user)
-    self.id == user.practice_id 
+    self.id == user.practice_id
   end
 
   def all_practice_docs
@@ -57,7 +57,7 @@ class Practice < ActiveRecord::Base
     @docs = User.where("practice_id = ?", self.id)
 
   end
-  
+
   def accepted_connections
     Connection.where("(requestor_id = ? OR target_id = ?) AND status_type = ?",self.id,self.id,"Accepted")
 
@@ -71,8 +71,8 @@ class Practice < ActiveRecord::Base
 
   def potential_connections
     # joins(:connections_as_requestor, :connections_as_target).where("connections.target_id != ? ")
-    self.class.joins("LEFT OUTER JOIN connections ON 
-      (practices.id = connections.target_id AND connections.requestor_id = #{self.id}) OR 
+    self.class.joins("LEFT OUTER JOIN connections ON
+      (practices.id = connections.target_id AND connections.requestor_id = #{self.id}) OR
       (practices.id = connections.requestor_id AND connections.target_id = #{self.id})").
       where('connections.id IS NULL')
 

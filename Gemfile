@@ -10,6 +10,8 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'cancan'
 gem 'simple_form'
+gem 'groupdate'
+gem 'chartkick'
 #gem 'd3_rails'
 
 # Gems used only for assets and not required
