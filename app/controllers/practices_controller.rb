@@ -36,12 +36,13 @@ class PracticesController < ApplicationController
 
       format.json {
         render :json => {
-          :referrals => @referrals.as_json(:include => {
-            :user => {
-             :include => {
-              :practice => {
-                :only => :office_name} }}}),
-          :received_referrals => @received_referrals.as_json(:methods => :recipient,
+          :referrals => @referrals.as_json(:methods =>:recipient,
+            :include => {
+              :user => {
+               :include => {
+                :practice => {
+                  :only => :office_name} }}}),
+          :received_referrals => @received_referrals.as_json(:methods => :sender,
             :include => {
               :user => {
                 :include => {

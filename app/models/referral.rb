@@ -86,6 +86,11 @@ class Referral < ActiveRecord::Base
 
   end
 
+  def sender
+    User.find_by_id(user_id)
+
+  end
+
 
 
 end
