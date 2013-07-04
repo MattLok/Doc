@@ -84,7 +84,25 @@ class Practice < ActiveRecord::Base
       hash[user.id] = user.referrals.group_by_month("created_at").count
     end
     refs.reject!{|k,v| v == {}}
-    User.find(Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first[0]).full_name
+    record = Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first
+
+    user = User.find(record[0]).full_name
+    count = record[1].values[-1]
+
+    stat = "#{user} - #{count}"
+
+  end
+  def most_received_referrals
+    refs = users.each_with_object({}) do |user, hash|
+      hash[user.id] = user.received_referrals.group_by_month("created_at").count
+    end
+    refs.reject!{|k,v| v == {}}
+    #User.find(Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first[0]).full_name
+    record = Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first
+    user = User.find(record[0]).full_name
+    count = record[1].values[-1]
+
+    stat = "#{user} - #{count}"
 
   end
 
