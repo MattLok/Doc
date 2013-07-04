@@ -1,7 +1,7 @@
 <%= form_for [@practice, @patient] do |f| %>
-
+  <h4>Create Patient </h4>
   <%= f.label :first_name %>
-  <%= f.text_field :first_name%></br>
+  <%= f.text_field :first_name%>
 
   <%= f.label :last_name %>
   <%= f.text_field :last_name%>
@@ -9,7 +9,11 @@
   <%= f.label :ssn %>
   <%= f.text_field :ssn %>
 
-   <%= f.submit %>
+  <div class="row">
+    <div class="small-7  small-centered columns">
+      <%= f.submit :class =>'tiny button centered' %>
+    </div>
+  </div>
 
 
-  <% end %> 
+  <% end %>

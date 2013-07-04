@@ -20,17 +20,21 @@ class PatientsController < ApplicationController
     @practice_membership = PracticeMembership.create!(:patient_id => @patient.id, :practice_id => @practice.id)#@practice, @patient)
     if @practice_membership.save
 
-      redirect_to @practice, notice:"You made it!"
-      
+      redirect_to @practice, notice:"Patient Successfully Created"
 
-      #@practice_membership.create(params[@patient])
-      #binding.pry
-    
     else
       render(action: 'new')
 
-
     end
+  end
+
+  def index
+    @practice = current_user.practice
+    @patients = @practice.patients
+
+    @patient = @practice.patients.build()
+
+
   end
 
 
