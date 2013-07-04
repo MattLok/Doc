@@ -106,4 +106,33 @@ class Practice < ActiveRecord::Base
 
   end
 
+  def sender_practices
+    #senders = Practice.find(received_referrals.pluck(:user_id))
+    senders = User.find(received_referrals.pluck(:user_id))
+    pracs = []
+    senders.each do |user|
+      pracs << user.practice_id
+    end
+   # pracs.uniq!
+    pracs.collect{|prac| Practice.find(prac)}.uniq
+
+  end
+
+  #Get the practice who has sent you the most referrla this month
+  def most_inbound
+
+    inbound = Hash.new
+    data = sender_practices.map do |sender|
+      if sender.referrals.count == 0
+        next
+      end
+      inbound[sender.office_name] = sender.referrals.group_by_month("referrals.created_at").count
+    end
+    record = inbound.max_by{|k,v| v.max_by{|k1,v1| [k1,v1]}}
+    prac = record[0]
+    count = record[1].values[0]
+
+    stat = "#{prac} - #{count}"
+  end
+
 end

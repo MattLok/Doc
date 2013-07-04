@@ -34,7 +34,8 @@ class PracticesController < ApplicationController
     @sent = sent_monthly_referrals
     @stats = {
               most_sent_referrals: @practice.most_sent_referrals,
-              most_received_referrals: @practice.most_received_referrals
+              most_received_referrals: @practice.most_received_referrals,
+              most_inbound_referrals: @practice.most_inbound
     }
 
   end
