@@ -135,4 +135,45 @@ class Practice < ActiveRecord::Base
     stat = "#{prac} - #{count}"
   end
 
+  #retrieves all practcememberhsips to be iterated through
+  def referred_appointments
+    patients = []
+    memberships= []
+    received_referrals.each do |ref|
+      patients << ref.patient_id
+    end
+
+    patients.each do |pat|
+      memberships << PracticeMembership.where("(patient_id = ? AND practice_id = ?)",pat,self)
+    end
+    memberships.flatten.uniq
+
+  end
+
+  def referral_appointments
+    range = Time.now.beginning_of_month..Time.now.end_of_month
+    referrals = Hash.new
+    data = referred_appointments.map do |member|
+      if member.appointments.count == 0
+        next
+      end
+      referrals[member.id] = member.appointments.group_by_month("appointments.created_at", Time.zone, range).count
+
+    end
+    referrals.delete_if{|k,v| v.empty?}
+    sum = 0
+    referrals.values.each do |x|
+      sum += x.values[0]
+    end
+    sum
+
+  end
+
+  # def monthly_appointments
+  #    range = Time.now.beginning_of_month..Time.now.end_of_month
+  #   appointments.group_by_month("created_at", Time.zone,range).count
+
+  # end
+
+
 end

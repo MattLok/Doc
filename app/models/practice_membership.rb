@@ -8,21 +8,23 @@ class PracticeMembership < ActiveRecord::Base
   belongs_to :patient
   belongs_to :practice
 
+  has_many :appointments, :foreign_key => "prac_mem_id"
+
 
   def get_first_name
 
     self.patient.first_name
 
-  end 
+  end
 
   def involves?(user)
-    self.practice_id == user.practice_id 
+    self.practice_id == user.practice_id
 
   end
 
-  def full_name 
+  def full_name
 
     @name = "#{self.patient.first_name} #{self.patient.last_name}"
   end
 end
- 
+
