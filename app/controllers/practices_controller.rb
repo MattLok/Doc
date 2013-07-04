@@ -57,7 +57,6 @@ class PracticesController < ApplicationController
 
   def sent_monthly_referrals
     data = receivers.map do |receiver|
-      binding.pry
       {:name => receiver.practice.office_name, :data => hash_fix(receiver.received_referrals.group_by_month(:created_at).count) }
     end
   end

@@ -78,4 +78,13 @@ class Practice < ActiveRecord::Base
 
   end
 
+  def most_sent_referrals
+    refs = users.each_with_object({}) do |user, hash|
+      hash[user.id] = user.referrals.group_by_month("created_at").count
+    end
+    refs.reject!{|k,v| v == {}}
+    User.find(Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first[0]).full_name
+
+  end
+
 end
