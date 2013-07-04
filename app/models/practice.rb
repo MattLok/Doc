@@ -79,6 +79,7 @@ class Practice < ActiveRecord::Base
   end
 
   def most_sent_referrals
+    #sorted = my_hash.values.flat_map(&:to_a).sort.reverse
     refs = users.each_with_object({}) do |user, hash|
       hash[user.id] = user.referrals.group_by_month("created_at").count
     end
