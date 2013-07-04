@@ -31,9 +31,12 @@ class PracticesController < ApplicationController
     @referrals = @practice.referrals
     @received_referrals = @practice.received_referrals
 
+    @sent = sent_monthly_referrals
+
   end
 
   protected
+
 
   def senders
     User.find(@practice.received_referrals.pluck(:user_id))
@@ -46,6 +49,17 @@ class PracticesController < ApplicationController
 
     # senders.first.referrals.group_by_month(:created_at).count.each{|k,v| h[DateTime.parse(k).strftime("%B")] = v }
     # binding.pry
+  end
+
+  def receivers
+    User.find(@practice.referrals.pluck(:to_user))
+  end
+
+  def sent_monthly_referrals
+    data = receivers.map do |receiver|
+      binding.pry
+      {:name => receiver.practice.office_name, :data => hash_fix(receiver.received_referrals.group_by_month(:created_at).count) }
+    end
   end
 
   def hash_fix(thing)

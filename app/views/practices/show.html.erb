@@ -9,8 +9,12 @@
       <%= column_chart monthly_referrals  %>
 
        <%#= column_chart @practice.received_referrals.group(:user_id).group_by_month("referrals.created_at").count %>
+      <h5>Sent</h5>
+      <%= column_chart @sent %>
+
 
     </div>
+
   </div>
 
 <%= content_for :extra_footer do %>
