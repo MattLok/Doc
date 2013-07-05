@@ -1,11 +1,23 @@
 <div class="large-2 columns bor">
   <ul class="side-nav">
-    <li class="active"><%= link_to 'Practice', practice_path(@practice) %></li>
-    <li><%= link_to 'Appointments', practice_appointments_path(@practice) %></li>
-    <li><%= link_to 'Patients', practice_patients_path(@practice) %></li>
-    <li><%= link_to 'Connections', practice_connections_path(@practice) %></li>
-    <li><%= link_to 'Doctors', practice_doctors_path(@practice),:controller => :users, :action => :index %></li>
-    <li><%= link_to 'Referrals',doctor_referrals_path(@practice) %></li>
+    <li class="<%=(request.path == practice_path(@practice)) ? "active" : "" %>">
+      <%= link_to 'Practice', practice_path(@practice) %>
+    </li>
+    <li class="<%=(request.path == practice_appointments_path(@practice)) ? "active" : "" %>">
+      <%= link_to 'Appointments', practice_appointments_path(@practice)%>
+    </li>
+    <li class="<%=(request.path == practice_patients_path(@practice)) ? "active" : "" %>">
+      <%= link_to 'Patients', practice_patients_path(@practice) %>
+    </li>
+    <li class="<%=(request.path == practice_connections_path(@practice))? "active" : "" %>">
+      <%= link_to 'Connections', practice_connections_path(@practice) %>
+    </li>
+    <li class="<%=(request.path == practice_doctors_path(@practice))? "active": "" %>">
+      <%= link_to 'Doctors', practice_doctors_path(@practice),:controller => :users, :action => :index %>
+    </li>
+    <li class="<%=(request.path == doctor_referrals_path(@practice))? "active": "" %>">
+      <%= link_to 'Referrals',doctor_referrals_path(@practice) %>
+    </li>
   </ul>
 
 </div>

@@ -40,7 +40,6 @@ class PracticesController < ApplicationController
               referral_to_appointment_percent: @practice.referral_to_appointment_percent(@practice.received_referrals),
               sent_referral_to_appointment_percent: @practice.referral_to_appointment_percent(@practice.referrals)
     }
-    binding.pry
   end
 
   protected
