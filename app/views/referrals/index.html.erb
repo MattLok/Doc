@@ -68,16 +68,18 @@
   </div>
 
 </div>
-<% if current_user.role == 'doctor' %>
-  <div class="large-3 columns">
-    <h3>Send a Referral</h3>
-    <%= render :partial => 'referrals/form' %>
+<div class="large-3 columns form-fixed">
+  <% if current_user.role == 'doctor' %>
+    <div class="large-12 columns">
+      <h3>Send a Referral</h3>
+      <%= render :partial => 'referrals/form' %>
 
+    </div>
+
+  <% end %>
+
+  <div id ="note-holder" class="large-12 columns">
   </div>
-
-<% end %>
-
-<div id ="note-holder" class="large-3 columns">
 </div>
 
 

@@ -3,7 +3,7 @@
     <% if @appointments.count == 0 %>
       <p>No upcoming appointments at this time</p>
     <% elsif current_user.role =='practice_admin' %>
-      <table>
+      <table class="full_width centered">
         <tr>
           <th>Date</th>
           <th>Doctor</th>
@@ -21,7 +21,7 @@
       <% if current_user.appointments.count == 0 %>
         <p>No upcoming appointments at this time</p>
       <% elsif current_user.appointments.count > 0 %>
-      <table>
+      <table class="full_width centered">
         <tr>
           <th>Date</th>
           <th>Patient</th>
@@ -32,16 +32,16 @@
             <td><%= appointment.patient_name %></td>
           </tr>
         <% end %>
-      </table> 
+      </table>
       <% end %>
     <% end %>
   </div><br />
-  <div class="large-12 columns bor">
+  <div class="large-12 columns">
     <h3>Past</h3>
     <% if @appointments.past.count == 0 %>
       <p>No old appointment records</p>
     <% elsif current_user.role =='practice_admin' %>
-      <table>
+      <table class="full_width centered">
         <tr>
           <th>Date</th>
           <th>Doctor</th>
@@ -59,7 +59,7 @@
       <% if current_user.appointments.count == 0 %>
         <p>No upcoming appointments at this time</p>
       <% else %>
-      <table>
+      <table class="full_width centered">
         <tr>
           <th>Date</th>
           <th>Patient</th>
@@ -70,11 +70,10 @@
             <td><%= appointment.patient_name %></td>
           </tr>
         <% end %>
-      </table> 
+      </table>
       <% end %>
     <% end %>
   </div>
 
-  <%= link_to 'Practice', practice_path(@practice) %>
 
 </div>

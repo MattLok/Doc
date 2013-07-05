@@ -12,7 +12,7 @@
  *= require_tree .
  *= require foundation_and_overrides
  */
- 
+
 
 
 .bor {
@@ -32,8 +32,8 @@ body {
     font: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.date_style {
-
+table tr th {
+  text-align: left;
 }
 
 .extra-pad {
@@ -46,4 +46,32 @@ body {
 
 .min-notes {
   min-height:250px;
+}
+
+.centered {
+  text-align:center;
+}
+.left-cell{
+  th{
+
+  text-align:left;
+  }
+}
+
+.drop_width{
+
+
+  width:100% !important;
+}
+.overflow{
+  overflow: hidden;
+}
+
+#note-holder{
+  position:fixed;
+
+}
+
+.form-fixed{
+  position:fixed;
 }

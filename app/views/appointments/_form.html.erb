@@ -1,14 +1,14 @@
 
 <%= form_for [@practice,@appointment] do |f| %>
 
-
+<div class="overflow">
   <%= f.label :date %>
-  <%= f.date_select :date, {:start_year => Time.now.year}, {:class =>"date-style large-4 columns"} %></br>
+  <%= f.date_select :date, {:start_year => Time.now.year}, {:class =>"date-style large-4 columns tiny button dropdown drop_width"} %></br>
   <%= f.label :doctor %>
-  <%= f.collection_select :user_id, @doctors, :id, :full_name, include_blank: true %></br>
+  <%= f.collection_select :user_id, @doctors, :id, :full_name, {include_blank: true} ,{:class =>"tiny button dropdown"}%></br>
   <%= f.label :patient %>
   <%= f.collection_select :prac_mem_id, @practice.practice_memberships, :id, :full_name,
-    inlcude_blank: true %><br /><br/>
+    {inlcude_blank: true}, {:class =>"tiny button dropdown"} %><br /><br/>
 
 
   <div class="row">
@@ -16,6 +16,6 @@
     <%= f.submit :class =>'tiny button centered' %>
     </div>
   </div>
+</div>
 
-
-<% end %> 
+<% end %>
