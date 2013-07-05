@@ -24,18 +24,29 @@ class PatientsController < ApplicationController
 
     else
       render(action: 'new')
+    end
+  end
 
+  def show
+    #@practice = current_user.practice
+    @patient = current_user.practice.patients.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
   def index
     @practice = current_user.practice
-    @patients = @practice.patients
-
+    if current_user.role == 'practice_admin'
+      @patients = @practice.patients.where("patients.id IS NOT NULL")
+    else
+      @patients = current_user.patients.where("id IS NOT NULL")
+    end
     @patient = @practice.patients.build()
-
-
   end
+
+
 
 
 end

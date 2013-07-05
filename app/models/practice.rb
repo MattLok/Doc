@@ -57,6 +57,13 @@ class Practice < ActiveRecord::Base
     @docs = User.where("practice_id = ?", self.id)
 
   end
+  #checks if patient is in practice
+  def has_member?(patient)
+    records = PracticeMembership.where("patient_id = ?", patient.id)
+    records.pluck(:practice_id).include?(id)
+
+
+  end
 
   def accepted_connections
     Connection.where("(requestor_id = ? OR target_id = ?) AND status_type = ?",self.id,self.id,"Accepted")

@@ -1,0 +1,38 @@
+<h3>Appointments</h3>
+<h5>Upcoming</h5>
+<% if @patient.appointments.count == 0 %>
+  <p>No upcoming appointments at this time</p>
+<% elsif current_user.role =='practice_admin' %>
+  <table class="full_width">
+    <tr>
+      <th>Date</th>
+      <th>Doctor</th>
+    </tr>
+  <% @patient.appointments.upcoming.each do |appointment| %>
+    <tr>
+      <td><%= appointment.date.strftime("%b %d,%y") %></td>
+      <td><%= appointment.doctor_name %></td>
+    </tr>
+    <% end %>
+  </table>
+<% end %><br />
+
+<h5>Past</h5>
+<% if @patient.appointments.past.count == 0 %>
+  <p>No old appointment records</p>
+<% elsif current_user.role =='practice_admin' %>
+  <table class="full_width">
+    <tr>
+      <th>Date</th>
+      <th>Doctor</th>
+    </tr>
+  <% @patient.appointments.past.each do |appointment| %>
+    <tr>
+      <td><%= appointment.date.strftime("%b %d,%y") %></td>
+      <td><%= appointment.doctor_name %></td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
+
+
