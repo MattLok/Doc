@@ -136,10 +136,10 @@ class Practice < ActiveRecord::Base
   end
 
   #retrieves all practcememberhsips to be iterated through
-  def referred_appointments
+  def referred_appointments(opt)
     patients = []
     memberships= []
-    received_referrals.each do |ref|
+    opt.each do |ref|
       patients << ref.patient_id
     end
 
@@ -153,7 +153,7 @@ class Practice < ActiveRecord::Base
   def referral_appointments
     range = Time.now.beginning_of_month..Time.now.end_of_month
     referrals = Hash.new
-    data = referred_appointments.map do |member|
+    data = referred_appointments(received_referrals).map do |member|
       if member.appointments.count == 0
         next
       end
@@ -169,11 +169,14 @@ class Practice < ActiveRecord::Base
 
   end
 
-  # def monthly_appointments
-  #    range = Time.now.beginning_of_month..Time.now.end_of_month
-  #   appointments.group_by_month("created_at", Time.zone,range).count
+  def referral_to_appointment_percent
 
-  # end
+    received = (referral_appointments).to_f
+    total = appointments.group_by_month("appointments.created_at").count.values[-1].to_f
+    percent = (received/total) *100
+
+  end
+
 
 
 end
