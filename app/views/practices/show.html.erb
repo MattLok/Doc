@@ -3,28 +3,28 @@
   <div class="large-10 columns bor">
     <h3><%= @practice.office_name %></h3>
     <div class="large-12 columns bor">
-      <h3>Last Month</h3>
-      <div class="large-6 columns bor">
+      <h3>This Month</h3>
+      <div class="large-6 columns">
         <p>Most Sent Referrals: <%= @stats[:most_sent_referrals] %> </p>
         <p>Most Received Referrals: <%= @stats[:most_received_referrals] %></p>
         <p>Most Inbound Referrals: <%= @stats[:most_inbound_referrals] %></p>
       </div>
-      <div class="large-6 columns bor">
+      <div class="large-6 columns">
         <p>Referral Appointments: <%= @stats[:referral_appointments] %> </p>
         <p>Received Referral to Appointment: <%= @stats[:referral_to_appointment_percent] %>%</p>
-        <p>Sent Referral to Apppointment:  %</p>
+        <p>Sent Referral to Apppointment: <%= @stats[:sent_referral_to_appointment_percent]%>%</p>
       </div>
 
     </div>
 
     <h4>Referrals</h4>
     <div id="chart">
-      <h5>Received</h5>
+      <h5>Received - <%= @practice.received_referrals.count %></h5>
 
       <%= column_chart monthly_referrals  %>
 
        <%#= column_chart @practice.received_referrals.group(:user_id).group_by_month("referrals.created_at").count %>
-      <h5>Sent</h5>
+      <h5>Sent - <%= @practice.referrals.count %></h5>
       <%= column_chart @sent %>
 
 

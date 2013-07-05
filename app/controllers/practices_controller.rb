@@ -36,10 +36,11 @@ class PracticesController < ApplicationController
               most_sent_referrals: @practice.most_sent_referrals,
               most_received_referrals: @practice.most_received_referrals,
               most_inbound_referrals: @practice.most_inbound,
-              referral_appointments: @practice.referral_appointments,
-              referral_to_appointment_percent: @practice.referral_to_appointment_percent
+              referral_appointments: @practice.referral_appointments(@practice.received_referrals),
+              referral_to_appointment_percent: @practice.referral_to_appointment_percent(@practice.received_referrals),
+              sent_referral_to_appointment_percent: @practice.referral_to_appointment_percent(@practice.referrals)
     }
-
+    binding.pry
   end
 
   protected
@@ -62,6 +63,7 @@ class PracticesController < ApplicationController
     User.find(@practice.referrals.pluck(:to_user))
   end
 
+  #gets all referrals for receivers, not just the ones from the practice we want
   def sent_monthly_referrals
     data = receivers.map do |receiver|
       {:name => receiver.practice.office_name, :data => hash_fix(receiver.received_referrals.group_by_month(:created_at).count) }

@@ -150,10 +150,10 @@ class Practice < ActiveRecord::Base
 
   end
 
-  def referral_appointments
+  def referral_appointments(opt)
     range = Time.now.beginning_of_month..Time.now.end_of_month
     referrals = Hash.new
-    data = referred_appointments(received_referrals).map do |member|
+    data = referred_appointments(opt).map do |member|
       if member.appointments.count == 0
         next
       end
@@ -169,13 +169,15 @@ class Practice < ActiveRecord::Base
 
   end
 
-  def referral_to_appointment_percent
+  def referral_to_appointment_percent(opt)
 
-    received = (referral_appointments).to_f
+    received = (referral_appointments(opt)).to_f
     total = appointments.group_by_month("appointments.created_at").count.values[-1].to_f
     percent = (received/total) *100
 
   end
+
+
 
 
 
