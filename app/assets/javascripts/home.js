@@ -5,11 +5,11 @@
 // $(document).ready(function(){
 
 
-//   $('li a').on("click", changeNavClass);
-//       // $('.side-nav li').removeClass('active');
-//       // $(this).parent().addClass('active');
-
-// });
+  $('table td a').click(function(){
+      $('table td a').removeClass('active-link');
+      $(this).addClass('active-link');
+      alert($this);
+  });
 
 // function changeNavClass() {
 //   var pathname = window.location.pathname;

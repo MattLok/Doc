@@ -2,7 +2,7 @@
 
   <div class="large-10 columns bor">
     <h3><%= @practice.office_name %></h3>
-    <div class="large-12 columns bor">
+    <div class="large-12 columns bor-bottom">
       <h3>This Month</h3>
       <div class="large-6 columns">
         <p>Most Sent Referrals: <%= @stats[:most_sent_referrals] %> </p>
@@ -17,8 +17,9 @@
 
     </div>
 
-    <h4>Referrals</h4>
+
     <div id="chart">
+      <h4 class="extra-pad">Referrals</h4>
       <h5>Received - <%= @practice.received_referrals.count %></h5>
 
       <%= column_chart monthly_referrals  %>

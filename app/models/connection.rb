@@ -4,9 +4,9 @@ class Connection < ActiveRecord::Base
 
   validates_presence_of :requestor_id
   validates_presence_of :target_id
-  validates_presence_of :status_type 
+  validates_presence_of :status_type
 
-  
+
 
   #belongs_to :practice
   #has_one :status
@@ -15,10 +15,11 @@ class Connection < ActiveRecord::Base
 
   #A belongs to target(target_id) : A belongs to requestor
   # Class name and foreign key options
-  # class in both cases is going to be the same 
+  # class in both cases is going to be the same
 
-  belongs_to :practice, :class_name => "practice", :foreign_key => "requestor_id"
-  belongs_to :practice, :class_name => "practice", :foreign_key => "target_id"
+  belongs_to :requestor_practice, :class_name => "Practice", :foreign_key => "requestor_id"
+  belongs_to :target_practice, :class_name => "Practice", :foreign_key => "target_id"
+
 
   $STATUSES = ['Pending','Accepted','Declined']
 
@@ -32,15 +33,15 @@ class Connection < ActiveRecord::Base
     @requestor.office_name
   end
 
-  def target_name 
+  def target_name
     @sender = Practice.find(self.target_id)
     @sender.office_name
   end
 
   def get_name(user)
-    if self.requestor_id == user.practice_id 
-      target_name 
-    elsif self.target_id == user.practice_id 
+    if self.requestor_id == user.practice_id
+      target_name
+    elsif self.target_id == user.practice_id
       requestor_name
     end
   end
@@ -50,6 +51,15 @@ class Connection < ActiveRecord::Base
 
 
   end
+
+  def sender_or_receiver(user)
+    if self.requestor_id == user.practice_id
+      target_practice
+    elsif self.target_id == user.practice_id
+      requestor_practice
+    end
+  end
+
 
 
 end

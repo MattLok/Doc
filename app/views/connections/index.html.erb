@@ -1,4 +1,4 @@
-<div class="large-7 columns bor"> 
+<div class="large-7 columns bor">
   <h3>Pending Practice Connections</h3>
 
   <% if @connections.count == 0 %>
@@ -21,15 +21,21 @@
 
   <div class="large-12 columns">
     <h3>Connected Practices</h3>
-    <ul>
+
       <% @accepted_connections.each do |connection| %>
-        <li><%= connection.get_name(current_user) %></li>
+        <div class="bor-bottom">
+          <% prac = connection.sender_or_receiver(current_user) %>
+          <h5><%= prac.office_name %></h5>
+          <p>Contact: <%= prac.contact_name %></p>
+          <p>Phone: <%= prac.phone %></p>
+          <p>Email: <%= prac.email %></p>
+
+        </div>
 
       <% end %>
     </ul>
 
   </div>
-    <%= link_to 'Practice', practice_path(@practice) %>
 </div>
 <div class="large-3 columns bor">
   <h5> Connect Your Practice</h5>
