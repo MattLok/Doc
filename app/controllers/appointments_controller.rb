@@ -12,16 +12,21 @@ class AppointmentsController < ApplicationController
 
 
   def create
-
     @practice = Practice.find(params[:practice_id])
-    @patient = PracticeMembership.find(params[:appointment][:prac_mem_id]).patient
-    @doctor = User.find(params[:appointment][:user_id])
-    @appointment = @practice.appointments.new(params[:appointment])
+    @patient = Patient.find(params[:appointment][:prac_mem_id])
 
-    @date = "#{params[:appointment]["date(1i)"]}/#{params[:appointment]["date(2i)"]}/#{params[:appointment]["date(3i)"]}"
-    @appointment.date = @date
-    @practice_membership = PracticeMembership.where(:practice_id =>@practice.id, :patient_id => @patient.id ).first
-    @appointment.prac_mem_id = @practice_membership.id
+    if @patient.practice_memberships.pluck(:practice_id).include?(params[:practice_id].to_i)
+      @membership = PracticeMembership.where(:practice_id =>@practice.id, :patient_id => @patient.id ).first
+      @appointment.date = "#{params[:appointment]["date(1i)"]}/#{params[:appointment]["date(2i)"]}/#{params[:appointment]["date(3i)"]}"
+      @appointment.prac_mem_id = @membership.id
+    else
+
+      @membership = PracticeMembership.create!(:practice_id => @practice.id,:patient_id => @patient.id)
+      @appointment.date = "#{params[:appointment]["date(1i)"]}/#{params[:appointment]["date(2i)"]}/#{params[:appointment]["date(3i)"]}"
+      @appointment.prac_mem_id = @membership.id
+      binding.pry
+    end
+
     if @appointment.save
       redirect_to @practice, notice:"Appointment Created"
     else

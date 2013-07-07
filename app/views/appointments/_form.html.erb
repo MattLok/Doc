@@ -12,7 +12,7 @@
 
   <%#= f.collection_select :prac_mem_id, @practice.all_patients, :id, %>
 
-  <%= f.select "prac_mem_id", @practice.all_patients.map{|c| [c.full_name(@practice), c.id]}, {}, data: { behavior: 'category_dropdown' } %>
+  <%= f.select "prac_mem_id", @practice.all_patients.map{|c| [c.full_name(@practice), c.id]}, {}, data: { behavior: 'category_dropdown' },:class =>"tiny button dropdown" %>
 
   <div class="row">
     <div class="small-8  small-centered columns">
