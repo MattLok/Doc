@@ -23,7 +23,7 @@ class PracticeMembership < ActiveRecord::Base
   end
 
   def full_name
-
+    binding.pry
     @name = "#{self.patient.first_name} #{self.patient.last_name}"
   end
 end

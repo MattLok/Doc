@@ -8,7 +8,7 @@ class PracticeMembershipsController < ApplicationController
 
     @practice_membership = PracticeMembership.new()
     @practice_membership.patient_id = @patient
-    @practice_membership.practice_id = @practice 
+    @practice_membership.practice_id = @practice
     @practice_membership.save
 
   end
