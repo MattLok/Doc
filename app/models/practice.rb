@@ -91,12 +91,16 @@ class Practice < ActiveRecord::Base
       hash[user.id] = user.referrals.group_by_month("created_at").count
     end
     refs.reject!{|k,v| v == {}}
-    record = Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first
+    if (refs.length == 0)
+       "Not Applicable"
+    else
+      record = Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first
 
-    user = User.find(record[0]).full_name
-    count = record[1].values[-1]
+      user = User.find(record[0]).full_name
+      count = record[1].values[-1]
 
-    stat = "#{user} - #{count}"
+      stat = "#{user} - #{count}"
+    end
 
   end
   def most_received_referrals
@@ -104,12 +108,15 @@ class Practice < ActiveRecord::Base
       hash[user.id] = user.received_referrals.group_by_month("created_at").count
     end
     refs.reject!{|k,v| v == {}}
-    #User.find(Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first[0]).full_name
-    record = Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first
-    user = User.find(record[0]).full_name
-    count = record[1].values[-1]
+    if (refs.length == 0)
+       "Not Applicable"
+    else
+      record = Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first
+      user = User.find(record[0]).full_name
+      count = record[1].values[-1]
 
-    stat = "#{user} - #{count}"
+      stat = "#{user} - #{count}"
+    end
 
   end
 
@@ -135,11 +142,15 @@ class Practice < ActiveRecord::Base
       end
       inbound[sender.office_name] = sender.referrals.group_by_month("referrals.created_at").count
     end
-    record = inbound.max_by{|k,v| v.max_by{|k1,v1| [k1,v1]}}
-    prac = record[0]
-    count = record[1].values[0]
+    if (data.length == 0)
+       "Not Applicable"
+    else
+      record = inbound.max_by{|k,v| v.max_by{|k1,v1| [k1,v1]}}
+      prac = record[0]
+      count = record[1].values[0]
 
-    stat = "#{prac} - #{count}"
+      stat = "#{prac} - #{count}"
+    end
   end
 
   #retrieves all practcememberhsips to be iterated through
