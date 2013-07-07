@@ -185,6 +185,21 @@ class Practice < ActiveRecord::Base
   end
 
 
+  #for collection select on appointment drop down, is patient referred or just patient of practice
+  def patient_type?(kind_of)
+
+
+
+  end
+
+  #gets all practice patients and ones who have been referred but haven't set up an appointment
+  def all_patients
+    pats = patients.pluck(:id)
+    ref_pats = received_referrals.pluck(:patient_id).uniq
+    Patient.find_all_by_id((pats + ref_pats).uniq)
+
+  end
+
 
 
 

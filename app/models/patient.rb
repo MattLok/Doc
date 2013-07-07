@@ -7,7 +7,7 @@ class Patient < ActiveRecord::Base
 
   has_many :practice_memberships
   has_many :appointments, :through => :practice_memberships
-  
+
   has_one  :referral
 
 
@@ -22,9 +22,13 @@ class Patient < ActiveRecord::Base
 
   end
 
-  def full_name
-    @fullname ||= "#{self.first_name} #{self.last_name}"
+  def full_name(practice)
 
+    if PracticeMembership.where("practice_id = ? AND patient_id = ?", practice.id, id).count > 0
+      @fullname ||= "#{self.first_name} #{self.last_name}"
+    else
+      @fullname ||= "#{self.first_name} #{self.last_name} - Referred"
+    end
   end
-  
+
 end
