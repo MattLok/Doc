@@ -27,9 +27,11 @@
 
 
 body {
-    background: url("https://d3awrefyh2q0ta.cloudfront.net/../assets/background-texture.jpg") repeat scroll 0 0 #EDEDE5;
+    background: url("https://d3awrefyh2q0ta.cloudfront.net/../assets/background-texture.jpg") repeat scroll 0 0 #EDEDE5 !important;
     color: #888880;
     font: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+
+
 }
 
 table tr th {
@@ -86,3 +88,27 @@ table tr th {
   border-bottom:solid 1px #e4e4e4;
 
 }
+
+.main-content{
+  background-color: white;
+  margin-bottom:25px !important;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  -webkit-box-shadow: 0px 10px 12px rgba(50, 50, 50, 0.72);
+  -moz-box-shadow: 0px 10px 12px rgba(50, 50, 50, 0.72);
+  box-shadow: 0px 10px 12px rgba(50, 50, 50, 0.72);
+
+  div{
+    p{
+      span{
+        color:#0EBFE9;
+      }
+    }
+  }
+
+}
+.side-bor {
+  border:solid 1px #FFFFFF;
+}
+
+

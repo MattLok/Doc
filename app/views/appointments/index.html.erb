@@ -3,7 +3,7 @@
   <%= render 'appointments' %>
 
 <% if current_user.role =="practice_admin" %>
-  <div class="large-3 columns bor">
+  <div class="large-3 columns side-bor">
     <h4>Schedule an Appointment</h4>
     <%= render :partial => 'appointments/form' %>
   </div>
