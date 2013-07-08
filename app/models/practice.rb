@@ -85,6 +85,7 @@ class Practice < ActiveRecord::Base
 
   end
 
+
   def most_sent_referrals
     #sorted = my_hash.values.flat_map(&:to_a).sort.reverse
     refs = users.each_with_object({}) do |user, hash|
@@ -204,6 +205,7 @@ class Practice < ActiveRecord::Base
   end
 
 
-
-
+  def self.practices_that_sent_referrals_to(practice)
+    Referral.where(to_user: Practice.user_ids).practices
+  end
 end

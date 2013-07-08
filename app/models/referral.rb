@@ -109,7 +109,7 @@ class Referral < ActiveRecord::Base
     where(to_user: practice.user_ids)
   end
 
-
+  #Practice.find(User.where(id: Referral.sent_to_other_practice(Practice.find(12)).pluck(:to_user)).pluck(:practice_id))
 
   # def monthly_referrals(practice)
   #   data = received_by_practice(practice).map do |sender|

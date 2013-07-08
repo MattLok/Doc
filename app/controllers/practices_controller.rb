@@ -65,7 +65,6 @@ class PracticesController < ApplicationController
     data = receivers.map do |receiver|
       {:name => receiver.practice.office_name, :data => hash_fix(receiver.received_referrals_from(@practice).group_by_month(:created_at).count) }
     end
-    binding.pry
   end
 
   def hash_fix(thing)
