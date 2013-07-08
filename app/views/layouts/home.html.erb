@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Docferral" %></title>
+    <%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    "application" %>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="main-banner">
+
+
+        <div class="row">
+          <div class="small-6 large-centered columns main-tag">
+           <h1 class="main-header">Docferral</h1>
+           <p>Inbound and Outbund Referral Management</p>
+          </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="row">
+      <h1>a</h1>
+
+    </div>
+      <!-- <div class="row full_width">
+        <div class="main-banner" stlye="top:0px;">
+          <h1>HomePage Test</h1>
+
+        </div>
+      </div> -->
+
+
+
+
+  </body>
+</html>
