@@ -7,7 +7,9 @@ class ApplicationController < ActionController::Base
 
   before_filter :check_user_has_practice!
 
-  def check_user_has_practice! 
+  helper_method :current_practice
+
+  def check_user_has_practice!
     if signed_in?
       #binding.pry
 
@@ -19,11 +21,19 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    #binding.pry 
+    #binding.pry
     if resource.practice.present?
       practice_path(resource.practice)
     else
       new_practice_path
+    end
+  end
+
+  def current_practice
+    @current_practice ||= if current_user.present?
+      current_user.practice
+    else
+      nil
     end
   end
 
