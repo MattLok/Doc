@@ -28,8 +28,6 @@ class PracticesController < ApplicationController
 
   def show
     @practice = current_user.practice
-    @referrals = @practice.referrals
-    @received_referrals = @practice.received_referrals
 
     @sent = sent_monthly_referrals
     @stats = {
@@ -62,16 +60,21 @@ class PracticesController < ApplicationController
     User.find(@practice.referrals.pluck(:to_user))
   end
 
-  #gets all referrals for receivers, not just the ones from the practice we want
+  #gets all referrals for receivers, not just the ones from the practice we want #Referral.sent_to_other_practice(receiver.practice
   def sent_monthly_referrals
     data = receivers.map do |receiver|
-      {:name => receiver.practice.office_name, :data => hash_fix(receiver.received_referrals.group_by_month(:created_at).count) }
+      {:name => receiver.practice.office_name, :data => hash_fix(receiver.received_referrals_from(@practice).group_by_month(:created_at).count) }
     end
+    binding.pry
   end
 
   def hash_fix(thing)
     h = {}
-    thing.each{|k,v| h[DateTime.parse(k).strftime("%B")] = v }
+    thing.each do |k,v|
+      h[DateTime.parse(k).strftime("%B")] = v
+    end
     h
   end
+
+
 end

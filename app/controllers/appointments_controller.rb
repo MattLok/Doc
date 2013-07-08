@@ -20,11 +20,9 @@ class AppointmentsController < ApplicationController
       @appointment.date = "#{params[:appointment]["date(1i)"]}/#{params[:appointment]["date(2i)"]}/#{params[:appointment]["date(3i)"]}"
       @appointment.prac_mem_id = @membership.id
     else
-
       @membership = PracticeMembership.create!(:practice_id => @practice.id,:patient_id => @patient.id)
       @appointment.date = "#{params[:appointment]["date(1i)"]}/#{params[:appointment]["date(2i)"]}/#{params[:appointment]["date(3i)"]}"
       @appointment.prac_mem_id = @membership.id
-      binding.pry
     end
 
     if @appointment.save

@@ -101,6 +101,21 @@ class Referral < ActiveRecord::Base
 
   end
 
+  def self.sent_to_other_practice(practice)
+    where(user_id: practice.user_ids)
+  end
+
+  def self.received_by_practice(practice)
+    where(to_user: practice.user_ids)
+  end
+
+
+
+  # def monthly_referrals(practice)
+  #   data = received_by_practice(practice).map do |sender|
+  #     {}
+
+
 
 
 end

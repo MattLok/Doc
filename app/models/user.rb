@@ -8,20 +8,20 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  #attr_accessible :email, 
+  #attr_accessible :email,
   attr_accessible :email, :first_name, :last_name, :practice_id, :password, :password_confirmation, :remember_me
   after_initialize :default_values
 
-  validates_presence_of :role, :email, :password 
+  validates_presence_of :role, :email, :password
 
 
-  
+
   validates :role, :inclusion => { :in => ROLES}
 
   belongs_to :practice
-  has_many :appointments 
+  has_many :appointments
   has_many :referrals
-  has_many :received_referrals, 
+  has_many :received_referrals,
     class_name: 'Referral',
     foreign_key: 'to_user'
 
@@ -51,8 +51,15 @@ class User < ActiveRecord::Base
     @name = "#{self.first_name} #{self.last_name}"
   end
 
+  def received_referrals_from(practice)
+    #binding.pry
+    refs = received_referrals
+    from_prac_doctor = refs.where(user_id: practice.user_ids)
+
+  end
 
 
 
-  
+
+
 end
