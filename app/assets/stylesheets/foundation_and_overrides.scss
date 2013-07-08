@@ -968,7 +968,7 @@
 //
 
 // Background color for the top bar
- $topbar-bg: #0EBFE9;
+ $topbar-bg:rgb(0,191,255);  //#0EBFE9;
 
 // Height and margin
  $topbar-height: 50px;
@@ -1009,4 +1009,10 @@
 // $topbar-media-query: "only screen and (min-width "#{$topbar-breakpoint}")";
 
 
+
+// General Icon Set
+
+
+
 @import 'foundation';
+

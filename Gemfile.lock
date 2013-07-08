@@ -71,6 +71,9 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    foundation-icons-sass-rails (2.0.0)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     groupdate (1.0.2)
       activerecord (>= 3.0.0)
     hike (1.2.3)
@@ -191,6 +194,7 @@ DEPENDENCIES
   devise_invitable
   email_spec
   factory_girl_rails
+  foundation-icons-sass-rails
   groupdate
   jquery-rails
   launchy
