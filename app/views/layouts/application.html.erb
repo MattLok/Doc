@@ -77,7 +77,7 @@
         <% if user_signed_in? && (current_user.role == 'practice_admin') %>
           <%= render :partial => 'shared/sideNav' %>
         <% elsif user_signed_in? && (current_user.role == 'doctor') %>
-          <%= render :partial => 'shared/sideNavDoc' %>
+          <%= render :partial => 'shared/sideNavDoc' unless current_user.practice == nil %>
         <% end %>
 
 

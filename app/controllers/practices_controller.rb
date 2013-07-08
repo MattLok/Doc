@@ -6,9 +6,7 @@ class PracticesController < ApplicationController
    helper_method :monthly_referrals
 
   def new
-
     @practice = Practice.new()
-
 
   end
 
