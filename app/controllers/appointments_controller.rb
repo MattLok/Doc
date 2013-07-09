@@ -33,6 +33,17 @@ class AppointmentsController < ApplicationController
 
   end
 
+  def show
+    #@practice = current_user.practice
+    @doc = User.find(params[:doctor_id])
+    @appointment = Appointment.find(params[:id])
+
+    render :template => 'users/show'
+    # respond_to do |format|
+    #   format.js { render :action => '/../users/docappointments'}
+    # end
+  end
+
   def index
 
     @practice = current_user.practice
@@ -41,12 +52,23 @@ class AppointmentsController < ApplicationController
     else
       @appointments = current_user.appointments
     end
+    #For individual doctor appointment AJAX @doctor
+    if(params.has_key?(:doctor_id))
+      @doctor = User.find(params[:doctor_id])
+    end
+
     @appointment = @practice.appointments.build(params[:appointment])
     @doctors = @practice.users
     @patients = @practice.all_patients
+
+
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
+
+    #binding.pry
     #@options = [@practice.patients,@practice.received_referrals]
-
-
   end
 
 

@@ -8,8 +8,8 @@ Docfer::Application.routes.draw do
 
   root :to => 'home#home'
 
-  resources :practices do 
-    resources :users 
+  resources :practices do
+    resources :users
     resources :doctors, only:[:index], as: "doctors", controller: "users"
     resources :patients
     resources :connections, only:[:new, :create,:destroy,:index, :update]
@@ -17,10 +17,11 @@ Docfer::Application.routes.draw do
 
   # resources :users, except: :index
 
-  # resources :users do 
+  # resources :users do
 
   resources :users, path: "doctors", only: [:show], as: "doctors", controller:"doctors" do
     resources :referrals, only:[:new,:create, :index,:show]
+    resources :appointments, only:[:show,:index]
   end
 
   resources :practices do
@@ -29,7 +30,7 @@ Docfer::Application.routes.draw do
     end
   end
 
-  resources :practices do 
+  resources :practices do
     resources :appointments
   end
   # The priority is based upon order of creation:

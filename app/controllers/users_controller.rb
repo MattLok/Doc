@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   skip_authorize_resource :only => [:new, :create]
 
 
-  
+
   def show
     @doctor = User.find(params[:id])
 
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def index
     #binding.pry
     @practice = Practice.find(params[:practice_id])
-    @doctors = @practice.users 
+    @doctors = @practice.users
 
   end
 
