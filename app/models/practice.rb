@@ -208,4 +208,57 @@ class Practice < ActiveRecord::Base
   def self.practices_that_sent_referrals_to(practice)
     Referral.where(to_user: Practice.user_ids).practices
   end
+
+
+  def merge_individual_refs_to_practice(data)
+    totals ={}
+    data.each do |user|
+      practice_name = user[:name]
+      totals[practice_name] ||= Hash.new(0)
+
+      months = user[:data]
+
+      months.each do |month, count|
+        totals[practice_name][month] += count
+      end
+    end
+
+    totals.map{|k,v| {:name => k, :data => v }}
+  end
+
+  def receivers
+    User.find(referrals.pluck(:to_user))
+  end
+
+  def sent_monthly_referrals
+    data = receivers.map do |receiver|
+      {:name => receiver.practice.office_name, :data => hash_fix(receiver.received_referrals_from(self).group_by_month(:created_at).count) }
+    end
+    #binding.pry
+    merge_individual_refs_to_practice(data)
+  end
+
+  def senders
+    User.find(received_referrals.pluck(:user_id))
+  end
+
+  def monthly_referrals
+    data = senders.map do |sender|
+      {:name => sender.practice.office_name, :data => hash_fix(sender.referrals.group_by_month(:created_at).count) }
+    end
+    merge_individual_refs_to_practice(data)
+  end
+
+
+  def hash_fix(thing)
+    h = {}
+    thing.each do |k,v|
+      h[DateTime.parse(k).strftime("%B")] = v
+    end
+    h
+  end
+
+
+
+
 end

@@ -22,7 +22,7 @@
       <h4 class="extra-pad">Referrals</h4>
       <h5>Received - <%= @practice.received_referrals.count %></h5>
 
-      <%= column_chart monthly_referrals  %>
+      <%= column_chart @received %>
 
        <%#= column_chart @practice.received_referrals.group(:user_id).group_by_month("referrals.created_at").count %>
       <h5>Sent - <%= @practice.referrals.count %></h5>

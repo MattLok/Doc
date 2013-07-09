@@ -25,47 +25,16 @@ class PracticesController < ApplicationController
 
   def show
     @practice = current_user.practice
-    @sent = sent_monthly_referrals
+    @sent = @practice.sent_monthly_referrals
+    @received = @practice.monthly_referrals
     @stats = {
-              most_sent_referrals: @practice.most_sent_referrals,
-              most_received_referrals: @practice.most_received_referrals,
-              most_inbound_referrals: @practice.most_inbound,
-              referral_appointments: @practice.referral_appointments(@practice.received_referrals),
-              referral_to_appointment_percent: @practice.referral_to_appointment_percent(@practice.received_referrals),
-              sent_referral_to_appointment_percent: @practice.referral_to_appointment_percent(@practice.referrals)
+      most_sent_referrals: @practice.most_sent_referrals,
+      most_received_referrals: @practice.most_received_referrals,
+      most_inbound_referrals: @practice.most_inbound,
+      referral_appointments: @practice.referral_appointments(@practice.received_referrals),
+      referral_to_appointment_percent: @practice.referral_to_appointment_percent(@practice.received_referrals),
+      sent_referral_to_appointment_percent: @practice.referral_to_appointment_percent(@practice.referrals)
     }
-  end
-
-  protected
-
-
-  def senders
-    User.find(@practice.received_referrals.pluck(:user_id))
-  end
-
-  def monthly_referrals
-    data = senders.map do |sender|
-      {:name => sender.practice.office_name, :data => hash_fix(sender.referrals.group_by_month(:created_at).count) }
-    end
-  end
-
-  def receivers
-    User.find(@practice.referrals.pluck(:to_user))
-  end
-
-  #gets all referrals for receivers, not just the ones from the practice we want #Referral.sent_to_other_practice(receiver.practice
-  def sent_monthly_referrals
-    data = receivers.map do |receiver|
-      {:name => receiver.practice.office_name, :data => hash_fix(receiver.received_referrals_from(@practice).group_by_month(:created_at).count) }
-    end
-  end
-
-  def hash_fix(thing)
-    h = {}
-    thing.each do |k,v|
-      h[DateTime.parse(k).strftime("%B")] = v
-    end
-    h
   end
 
 
