@@ -3,7 +3,7 @@
 <% if @patient.appointments.count == 0 %>
   <p>No upcoming appointments at this time</p>
 <% elsif current_user.role =='practice_admin' %>
-  <table class="full_width">
+  <table class="full_width centered">
     <tr>
       <th>Date</th>
       <th>Doctor</th>
@@ -21,7 +21,7 @@
 <% if @patient.appointments.past.count == 0 %>
   <p>No old appointment records</p>
 <% elsif current_user.role =='practice_admin' %>
-  <table class="full_width">
+  <table class="full_width centered">
     <tr>
       <th>Date</th>
       <th>Doctor</th>

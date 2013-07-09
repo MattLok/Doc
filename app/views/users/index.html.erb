@@ -9,7 +9,7 @@
             <p>Name: <%= doc.full_name %></p>
             <p>Email: <%= doc.email %></p>
             <p>Role: <%= doc.role %></p>
-            <p><%= link_to 'Appointments', doctor_appointment_path(doc, doc.appointments.first), remote: true %></p>
+            <p><%= link_to 'Appointments', doctor_appointments_path(doc), remote: true %> </p>
           </div>
         <% end %>
       </div>

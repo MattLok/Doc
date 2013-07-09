@@ -74,6 +74,19 @@
 
 
     </div>
+    <div class="twelve columns">
+      <% if flash[:error] %>
+        <div class="error alert-box"><%= flash[:error] %></div>
+      <% end %>
+
+      <%if flash[:notice] %>
+        <div class="notice alert-box success"><%= flash[:notice] %></div>
+      <% end %>
+
+      <%if flash[:alert] %>
+        <div class="alert"><%= flash[:alert] %></div>
+      <% end %>
+    </div>
 
     <div class="home-features">
       <div class="row">

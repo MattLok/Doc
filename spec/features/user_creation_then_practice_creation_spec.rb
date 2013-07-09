@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Signing up a practice" do 
+feature "Signing up a practice" do
 
   #As a visitor
   #I want to be able to sign up a practice
@@ -10,15 +10,15 @@ feature "Signing up a practice" do
   # - is redirected to create and join a new practice
 
 
-  it "creates a user then a redirects to practice creation" do 
+  it "creates a user then a redirects to practice creation" do
     visit(root_path)
-    click_on "Sign up"
+    click_on "Register"
 
     fill_in 'First name', with:'Matt'
     fill_in 'Last name', with:'Mdog'
     fill_in 'Email', with:'Matt@site.com'
     fill_in 'user_password', with:'password'
-    fill_in 'user_password_confirmation', with:'password' 
+    fill_in 'user_password_confirmation', with:'password'
 
     click_on 'Create User'
 

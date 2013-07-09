@@ -5,12 +5,12 @@ class UsersController < ApplicationController
 
 
   def show
+    binding.pry
     @doctor = User.find(params[:id])
 
   end
 
   def index
-    #binding.pry
     @practice = Practice.find(params[:practice_id])
     @doctors = @practice.users
 

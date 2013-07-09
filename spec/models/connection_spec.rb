@@ -5,19 +5,19 @@ describe Connection do
 
 
 
-  describe "Creating a connection" do 
+  describe "Creating a connection" do
 
     it { should validate_presence_of(:requestor_id) }
     it { should validate_presence_of(:target_id) }
     #it { should validate_presence_of(:status_id) }
 
-    it "has a default status_id" do 
+    it "has a default status_id" do
 
       a = FactoryGirl.create(:user)
       b = FactoryGirl.create(:user)
 
       connection = Connection.create(:requestor_id => a.id, :target_id => b.id)
-      
+
       expect(connection.status_type).to eql('Pending')
 
       #puts connection.inspect
@@ -27,12 +27,12 @@ describe Connection do
 
   end
 
-  describe "Connection relations" do 
+  describe "Connection relations" do
 
     #it {should belong_to(:status) }
 
-    it {should belong_to(:practice)}
-
+    it {should belong_to(:requestor_practice)}
+    it {should belong_to(:target_practice)}
 
   end
 
