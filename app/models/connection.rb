@@ -6,8 +6,6 @@ class Connection < ActiveRecord::Base
   validates_presence_of :target_id
   validates_presence_of :status_type
 
-
-
   #belongs_to :practice
   #has_one :status
   #has_one :status #, :class_name => "status", :foreign_key => "status_id"

@@ -85,6 +85,10 @@ class Practice < ActiveRecord::Base
 
   end
 
+  #Filter out nil referrals created on the index page
+  def valid_referrals
+    referrals.where("user_id IS NOT NULL")
+  end
 
   def most_sent_referrals
     #sorted = my_hash.values.flat_map(&:to_a).sort.reverse

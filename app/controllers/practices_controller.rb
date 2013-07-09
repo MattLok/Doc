@@ -7,7 +7,6 @@ class PracticesController < ApplicationController
 
   def new
     @practice = Practice.new()
-
   end
 
   def create
@@ -26,7 +25,6 @@ class PracticesController < ApplicationController
 
   def show
     @practice = current_user.practice
-
     @sent = sent_monthly_referrals
     @stats = {
               most_sent_referrals: @practice.most_sent_referrals,
@@ -49,9 +47,6 @@ class PracticesController < ApplicationController
     data = senders.map do |sender|
       {:name => sender.practice.office_name, :data => hash_fix(sender.referrals.group_by_month(:created_at).count) }
     end
-
-    # senders.first.referrals.group_by_month(:created_at).count.each{|k,v| h[DateTime.parse(k).strftime("%B")] = v }
-    # binding.pry
   end
 
   def receivers

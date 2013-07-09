@@ -2,15 +2,12 @@ class ReferralsController < ApplicationController
   load_and_authorize_resource
 
 
-  def new     
+  def new
     @doctor = User.find(params[:doctor_id])
     @referral = @doctor.referrals.build()
-    #@practice = Practice.find(@doctor.practice_id)
     @potential = User.all
     @patients = Patient.all
-    @connected_docs = @referral.connected_docs 
-    #binding.pry
-    #@doc_patient
+    @connected_docs = @referral.connected_docs
   end
 
   def create
@@ -20,9 +17,8 @@ class ReferralsController < ApplicationController
     @referral = @doctor.referrals.build(:to_user => @to_doc.id,
                                         :patient_id => @patient.id,
                                         :notes => params[:referral][:notes])
-    #binding.pry
 
-    if @referral.save 
+    if @referral.save
       redirect_to practice_path(@doctor.practice), notice: "Referral Sent"
     else
       render(action:'new')
@@ -36,20 +32,19 @@ class ReferralsController < ApplicationController
       format.html
       format.js
     end
-
   end
 
   def index
-    
+
     @practice = current_user.practice
     if current_user.role == 'practice_admin'
-      @referrals = @practice.referrals.where("user_id IS NOT NULL")
+      @referrals = @practice.valid_referrals
       @received = @practice.received_referrals
     else
-      @referrals = current_user.referrals.where("user_id IS NOT NULL")
+      @referrals = current_user.valid_referrals
       @received = current_user.received_referrals
 
-    end 
+    end
     @doctor = current_user
     @referral = @doctor.referrals.build(params[:referral])
     @patients = @practice.patients
@@ -57,7 +52,6 @@ class ReferralsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: [@referrals,@received]}
     end
-   # binding.pry
   end
 
 
