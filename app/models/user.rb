@@ -53,4 +53,8 @@ class User < ActiveRecord::Base
 
   end
 
+  def valid_referrals
+    referrals.where("user_id IS NOT NULL")
+  end
+
 end
