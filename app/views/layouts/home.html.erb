@@ -32,6 +32,10 @@
 
             <% if user_signed_in? %>
             <li class="">
+              <%= link_to 'Practice Home', practice_path(current_practice) %>
+            </li>
+            <li class="divider"></li>
+            <li class="">
               <a>
                 Signed in as <%= current_user.email %>
               </a>
