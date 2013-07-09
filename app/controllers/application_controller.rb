@@ -11,8 +11,6 @@ class ApplicationController < ActionController::Base
 
   def check_user_has_practice!
     if signed_in?
-      #binding.pry
-
       unless current_user.has_practice?
         redirect_to new_practice_path
         false
@@ -21,7 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    #binding.pry
     if resource.practice.present?
       practice_path(resource.practice)
     else

@@ -12,7 +12,7 @@ class Appointment < ActiveRecord::Base
 
   def involves?(practice)
     practice.appointments.where(user_id: practice.user_ids).include?(self)
-    #user.practice == appointment.practice_membership.practice
+
   end
 
   def doctor_name

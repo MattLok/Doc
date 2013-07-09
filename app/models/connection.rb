@@ -6,15 +6,6 @@ class Connection < ActiveRecord::Base
   validates_presence_of :target_id
   validates_presence_of :status_type
 
-  #belongs_to :practice
-  #has_one :status
-  #has_one :status #, :class_name => "status", :foreign_key => "status_id"
-  #belongs_to :status
-
-  #A belongs to target(target_id) : A belongs to requestor
-  # Class name and foreign key options
-  # class in both cases is going to be the same
-
   belongs_to :requestor_practice, :class_name => "Practice", :foreign_key => "requestor_id"
   belongs_to :target_practice, :class_name => "Practice", :foreign_key => "target_id"
 
@@ -47,7 +38,6 @@ class Connection < ActiveRecord::Base
   def involves?(user)
     self.requestor_id == user.practice_id || self.target_id == user.practice_id
 
-
   end
 
   def sender_or_receiver(user)
@@ -57,7 +47,5 @@ class Connection < ActiveRecord::Base
       requestor_practice
     end
   end
-
-
 
 end

@@ -1,14 +1,10 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others availabl e are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+
   ROLES = %w{practice_admin doctor}
 
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  #attr_accessible :email,
   attr_accessible :email, :first_name, :last_name, :practice_id, :password, :password_confirmation, :remember_me
   after_initialize :default_values
 
@@ -52,14 +48,9 @@ class User < ActiveRecord::Base
   end
 
   def received_referrals_from(practice)
-    #binding.pry
     refs = received_referrals
     from_prac_doctor = refs.where(user_id: practice.user_ids)
 
   end
-
-
-
-
 
 end

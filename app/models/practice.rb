@@ -30,9 +30,9 @@ class Practice < ActiveRecord::Base
   accepts_nested_attributes_for :users
 
   def involves?(user)
-    # users.any? do |user|
+
     referrals.any? { |referral| referral.user == user }
-    # end
+
   end
 
 
@@ -77,7 +77,6 @@ class Practice < ActiveRecord::Base
   end
 
   def potential_connections
-    # joins(:connections_as_requestor, :connections_as_target).where("connections.target_id != ? ")
     self.class.joins("LEFT OUTER JOIN connections ON
       (practices.id = connections.target_id AND connections.requestor_id = #{self.id}) OR
       (practices.id = connections.requestor_id AND connections.target_id = #{self.id})").
@@ -91,7 +90,6 @@ class Practice < ActiveRecord::Base
   end
 
   def most_sent_referrals
-    #sorted = my_hash.values.flat_map(&:to_a).sort.reverse
     refs = users.each_with_object({}) do |user, hash|
       hash[user.id] = user.referrals.group_by_month("created_at").count
     end
@@ -126,18 +124,16 @@ class Practice < ActiveRecord::Base
   end
 
   def sender_practices
-    #senders = Practice.find(received_referrals.pluck(:user_id))
     senders = User.find(received_referrals.pluck(:user_id))
     pracs = []
     senders.each do |user|
       pracs << user.practice_id
     end
-   # pracs.uniq!
     pracs.collect{|prac| Practice.find(prac)}.uniq
 
   end
 
-  #Get the practice who has sent you the most referrla this month
+  #Get the practice who has sent you the most referrals this month
   def most_inbound
 
     inbound = Hash.new

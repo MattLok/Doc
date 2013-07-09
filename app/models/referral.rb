@@ -14,10 +14,6 @@ class Referral < ActiveRecord::Base
     class_name: "User"
 
 
-
-
-  #has_one :status
-
   $REFERRAL_STATUS = ['Sent','Received']
 
   def default_values
@@ -83,10 +79,6 @@ class Referral < ActiveRecord::Base
     @practice = self.user.practice.office_name
   end
 
-  # def self.senders_practice_name
-  #   @practice_name =
-  # end
-
   def recipient_practice
     to_user_object.practice
   end
@@ -108,14 +100,6 @@ class Referral < ActiveRecord::Base
   def self.received_by_practice(practice)
     where(to_user: practice.user_ids)
   end
-
-  #Practice.find(User.where(id: Referral.sent_to_other_practice(Practice.find(12)).pluck(:to_user)).pluck(:practice_id))
-
-  # def monthly_referrals(practice)
-  #   data = received_by_practice(practice).map do |sender|
-  #     {}
-
-
 
 
 end

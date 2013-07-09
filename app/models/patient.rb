@@ -10,15 +10,12 @@ class Patient < ActiveRecord::Base
 
   has_one  :referral
 
-
-
   def in_practice_of?(user)
 
     if user.practice.present?
       practice = user.practice
       practice.has_member?(self)
     end
-
 
   end
 
