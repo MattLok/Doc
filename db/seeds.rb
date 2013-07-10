@@ -55,9 +55,9 @@ co = Practice.create(:office_name => "Cape Optometry",
 
   #### Cape Cod Medical Practice
 
-  ccm.users.create(:first_name =>"Matt",
-      :last_name => "Maloney",
-      :email => "matt@ccm.com",
+  ccm.users.create(:first_name =>"Guest",
+      :last_name => "User",
+      :email => "guest@ccm.com",
       :password =>"password").make_admin
   ccm.users.create(:first_name =>"Carl",
       :last_name =>"Banks",
