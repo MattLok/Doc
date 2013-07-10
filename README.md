@@ -19,6 +19,8 @@ password: password
 
 ![graph](https://dl.dropboxusercontent.com/u/47307570/Screen%20Shot%202013-07-10%20at%203.59.29%20PM.png)
 
+![graph](https://dl.dropboxusercontent.com/u/47307570/Screen%20Shot%202013-07-10%20at%204.15.16%20PM.png)
+
 ## Installation
 
 ```
