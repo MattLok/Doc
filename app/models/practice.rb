@@ -174,10 +174,8 @@ class Practice < ActiveRecord::Base
       if member.appointments.count == 0
         next
       end
-      binding.pry
       referrals[member.id] = member.appointments.from_practice(member.practice).group_by_month("appointments.created_at", Time.zone, range).count
     end
-    binding.pry
     referrals.delete_if{|k,v| v.empty?}
     sum = 0
     referrals.values.each do |x|
@@ -191,7 +189,7 @@ class Practice < ActiveRecord::Base
 
     received = (referral_appointments(opt)).to_f
     total = appointments.group_by_month("appointments.created_at").count.values[-1].to_f
-    percent = ((received/total) *100).round
+    percent = ((received/total) *100).to_s[0..3]
 
   end
 

@@ -267,7 +267,14 @@ end
   r.update_attribute :created_at, Time.now - rand(120).days
 end
 
+### Make Appointments from received Referrals
 
+ccm.received_referrals[0..15].each do |ref|
+  patient = Patient.find(ref.patient_id)
+  dr = ccm.users.sample
+  pm = patient.practice_memberships.find_or_create_by_practice_id(ccm.id)
+  appt = Appointment.create(prac_mem_id: pm.id, date: Time.now + rand(30).days, user_id: dr.id)
+end
 
 
 
