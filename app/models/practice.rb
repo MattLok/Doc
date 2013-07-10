@@ -93,6 +93,7 @@ class Practice < ActiveRecord::Base
     refs = users.each_with_object({}) do |user, hash|
       hash[user.id] = user.referrals.group_by_month("created_at").count
     end
+
     refs.reject!{|k,v| v == {}}
     if (refs.length == 0)
        "Not Applicable"
@@ -100,8 +101,7 @@ class Practice < ActiveRecord::Base
       record = Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first
 
       user = User.find(record[0]).full_name
-      count = record[1].values[-1]
-
+      count = record[1].sort_by{|k,v| k}.last.last
       stat = "#{user} - #{count}"
     end
 
@@ -116,8 +116,7 @@ class Practice < ActiveRecord::Base
     else
       record = Hash[refs.sort_by {|user_id, date_counts| date_counts.values.max }.reverse!].first
       user = User.find(record[0]).full_name
-      count = record[1].values[-1]
-
+      count = record[1].sort_by{|k,v| k}.last.last
       stat = "#{user} - #{count}"
     end
 
@@ -135,20 +134,19 @@ class Practice < ActiveRecord::Base
 
   #Get the practice who has sent you the most referrals this month
   def most_inbound
-
     inbound = Hash.new
     data = sender_practices.map do |sender|
       if sender.referrals.count == 0
         next
       end
-      inbound[sender.office_name] = sender.referrals.group_by_month("referrals.created_at").count
+      inbound[sender.office_name] = sender.referrals.received_by_practice(self).group_by_month("referrals.created_at").count
     end
     if (data.length == 0)
        "Not Applicable"
     else
       record = inbound.max_by{|k,v| v.max_by{|k1,v1| [k1,v1]}}
       prac = record[0]
-      count = record[1].values[0]
+      count = record[1].sort_by{|k,v| k}.last.last
 
       stat = "#{prac} - #{count}"
     end
@@ -176,9 +174,10 @@ class Practice < ActiveRecord::Base
       if member.appointments.count == 0
         next
       end
-      referrals[member.id] = member.appointments.group_by_month("appointments.created_at", Time.zone, range).count
-
+      binding.pry
+      referrals[member.id] = member.appointments.from_practice(member.practice).group_by_month("appointments.created_at", Time.zone, range).count
     end
+    binding.pry
     referrals.delete_if{|k,v| v.empty?}
     sum = 0
     referrals.values.each do |x|
@@ -192,7 +191,7 @@ class Practice < ActiveRecord::Base
 
     received = (referral_appointments(opt)).to_f
     total = appointments.group_by_month("appointments.created_at").count.values[-1].to_f
-    percent = (received/total) *100
+    percent = ((received/total) *100).round
 
   end
 

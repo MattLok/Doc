@@ -37,4 +37,9 @@ class Appointment < ActiveRecord::Base
     @appointments = Appointment.where("date < ?", Time.now).order('date DESC')
 
   end
+
+
+  def self.from_practice(practice)
+    where(user_id: practice.user_ids)
+  end
 end
